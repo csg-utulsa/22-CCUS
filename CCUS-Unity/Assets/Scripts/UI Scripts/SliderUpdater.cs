@@ -19,7 +19,7 @@ public class SliderUpdater : MonoBehaviour
 {
     [Header("Set in Inspector")]
     [SerializeField] private Slider slider;
-    [SerializeField] private CarbonBarHandler cbh;
+    [SerializeField] private BarHandler cbh;
     public void onSliderUpdate()
     {
         //Scales multiplaction of slider value (0-1) with factor of range from fillMax to fillMin

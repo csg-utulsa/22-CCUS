@@ -6,7 +6,7 @@
  * Last edited on: N/A
  * 
  * Description: Allows dynamic filling of a UI image, specifically the one contained inside of the CarbonBar parent object.
- * To reference this from another script, add "[SerializeField] private CarbonBarHandler cbh;" and set the parent object of CarbonBarHandler.cs in the inspector.
+ * To reference this from another script, add "[SerializeField] private BarHandler bh;" and set the parent object of CarbonBarHandler.cs in the inspector.
  * To update values from another script, do dbh.setFill(fillTotal), dbh.setFillBounds(min, max), etc.
  *****/
 
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CarbonBarHandler : MonoBehaviour
+public class BarHandler : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public Image CarbonBarFill;
