@@ -55,7 +55,7 @@ public class CarbonDataHandler : MonoBehaviour
         _currentPPM = _defaultPPM; //Set the current PPM to what the default PPM is set to
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _timeSinceYearUpdated += Time.deltaTime;
         _netZeroPPM = (_naturalCarbonEmissions + _industryCarbonEmissions) - _naturalCarbonSink; // Formula [C]
