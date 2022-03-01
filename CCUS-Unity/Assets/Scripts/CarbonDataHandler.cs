@@ -60,6 +60,7 @@ public class CarbonDataHandler : MonoBehaviour
         _timeSinceYearUpdated += Time.deltaTime;
         _netZeroPPM = (_naturalCarbonEmissions + _industryCarbonEmissions) - _naturalCarbonSink; // Formula [C]
         _percentageForNeutral = (int)((_netZeroPPM / _hundredPercentCCUS_PPM) * 100); // Formula [D]
+        float amtRemoved = _hundredPercentCCUS_PPM / 100f;
 
         //If year seconds interval has passed
         if (_timeSinceYearUpdated >= _secsBetweenYears)
@@ -68,10 +69,11 @@ public class CarbonDataHandler : MonoBehaviour
             _timeSinceYearUpdated = 0;
         }
 
-        _grossAnnualIncrease = (_naturalCarbonEmissions - _industryCarbonEmissions) + (2 * _industryCarbonEmissions) * (1 - (Mathf.Clamp(_percentageCCUS, 0, 100) / 100.0f)); // Formula [A]
-        _currentPPM += (_grossAnnualIncrease - _naturalCarbonSink) * (Time.deltaTime / _secsBetweenYears); //Current ppm += Formula [B] * [Time since last update] / [Seconds between years]
-        //[Time since last update] / [Seconds between years] is a factor to multiply the annual CO2 impact by the factor of how much time of that year has passed. ex: Time.detlaTime = 0.02 seconds, 0.02/15
+        _grossAnnualIncrease = (_naturalCarbonEmissions + _industryCarbonEmissions) - (amtRemoved * _percentageCCUS) - (_naturalCarbonSink); // Formula [A]
+        
 
+        //[Time since last update] / [Seconds between years] is a factor to multiply the annual CO2 impact by the factor of how much time of that year has passed. ex: Time.detlaTime = 0.02 seconds, 0.02/15
+       _currentPPM += (Time.deltaTime / _secsBetweenYears) * ((_naturalCarbonEmissions + _industryCarbonEmissions) - (amtRemoved * _percentageCCUS) - (_naturalCarbonSink));
     }
 
     /******
@@ -116,7 +118,7 @@ public class CarbonDataHandler : MonoBehaviour
     
     public float getAnnualCarbonIncrease()
     {
-        return _grossAnnualIncrease - _naturalCarbonSink;
+        return _grossAnnualIncrease;
     }
 
     /*Neutral CO2 getters*/
