@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class CarbonUpdater
 {
-    public float test(float test)
+    public void test()
     {
-        Debug.Log(test);
-        test += 1f;
-        return test;
-    }
-    public float calculateCurrentPPM()
-    {
-        return 0f;
+
     }
 }

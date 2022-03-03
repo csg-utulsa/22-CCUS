@@ -13,13 +13,7 @@ using UnityEditor.SceneManagement;
 
 public class GameSimulationState : GameBaseState
 {
-
-    CarbonUpdater CU = new CarbonUpdater();
-
-    private float test = 0f;
-
-
-
+    [SerializeField] private BasicInfoScriptableObject basicInfo;
     public override void EnterState()
     {
         Debug.Log("Entering Simulation State");
@@ -29,6 +23,6 @@ public class GameSimulationState : GameBaseState
 
     public override void UpdateState()
     {
-        test = CU.test(test);
+        
     }
 }
