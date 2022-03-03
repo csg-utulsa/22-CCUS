@@ -3,7 +3,7 @@
  * Created on: 2/22/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 2/24/22
+ * Last edited on: 3/2/22
  * 
  * Description: Manages background carbon emissions calculations.
  * Stores the value of current CCUS percentage, as well as other factors such as the year and current CO2 PPM
@@ -17,17 +17,16 @@ using UnityEngine;
 
 /**********
  * Things to do:
- * Annual PPM increase does not account for differently set max PPM CCUS percentage
+ * Convert some data values into scriptable objects, derivable from GameSimulationState
  *****/
 
 
 public class CarbonDataHandler : MonoBehaviour
 {
     /* ------------ FORMULAS USED ------------- */
-    //[A] Calculating the gross annual CO2 PPM increase -> Gross Annual Increase = (Natural - Industry) + (2 * industry) * (1 - CCUS%)
-    //[B] Calculating the net annual CO2 PPM increase accounting for natural carbon sinks -> Net Annual Increase = Annual Increase - Natural Carbon Sink
-    //[C] Calculating the amount of CO2 PPM needed to remove to achieve a net zero carbon emissions -> NetZeroPPM = (natural + industry) - (natural carbon sink)
-    //[D] Calculating the percentage of CCUS (based on some set max 100% value) to achieve net zero carbon emissions -> Percentage needed = (NetZeroPPM / MaxPPM of CCUS) * 100
+    //[A] Calculating the anual increase of air CCUS -> AnnualIncrease = (natural emissions + industry emissions) - ((ppm value of 100% CCUS / 100) * current percentage CCUS) - (natural carbon sink)
+    //[B] Calculating the amount of CO2 PPM needed to remove to achieve a net zero carbon emissions -> NetZeroPPM = (natural + industry) - (natural carbon sink)
+    //[C] Calculating the percentage of CCUS (based on some set max 100% value) to achieve net zero carbon emissions -> Percentage needed = (NetZeroPPM / MaxPPM of CCUS) * 100
 
 
     [Header("Set in Inspector")]
@@ -45,7 +44,7 @@ public class CarbonDataHandler : MonoBehaviour
     private float _netZeroPPM; 
     private float _currentPPM;
     private float _timeSinceYearUpdated = 0;
-    private float _grossAnnualIncrease;
+    private float _annualIncrease;
     private int _percentageForNeutral;
 
 
@@ -58,8 +57,8 @@ public class CarbonDataHandler : MonoBehaviour
     private void Update()
     {
         _timeSinceYearUpdated += Time.deltaTime;
-        _netZeroPPM = (_naturalCarbonEmissions + _industryCarbonEmissions) - _naturalCarbonSink; // Formula [C]
-        _percentageForNeutral = (int)((_netZeroPPM / _hundredPercentCCUS_PPM) * 100); // Formula [D]
+        _netZeroPPM = (_naturalCarbonEmissions + _industryCarbonEmissions) - _naturalCarbonSink; // Formula [B]
+        _percentageForNeutral = (int)((_netZeroPPM / _hundredPercentCCUS_PPM) * 100); // Formula [C]
         float amtRemoved = _hundredPercentCCUS_PPM / 100f;
 
         //If year seconds interval has passed
@@ -69,7 +68,7 @@ public class CarbonDataHandler : MonoBehaviour
             _timeSinceYearUpdated = 0;
         }
 
-        _grossAnnualIncrease = (_naturalCarbonEmissions + _industryCarbonEmissions) - (amtRemoved * _percentageCCUS) - (_naturalCarbonSink); // Formula [A]
+        _annualIncrease = (_naturalCarbonEmissions + _industryCarbonEmissions) - (amtRemoved * _percentageCCUS) - (_naturalCarbonSink); // Formula [A]
         
 
         //[Time since last update] / [Seconds between years] is a factor to multiply the annual CO2 impact by the factor of how much time of that year has passed. ex: Time.detlaTime = 0.02 seconds, 0.02/15
@@ -118,7 +117,7 @@ public class CarbonDataHandler : MonoBehaviour
     
     public float getAnnualCarbonIncrease()
     {
-        return _grossAnnualIncrease;
+        return _annualIncrease;
     }
 
     /*Neutral CO2 getters*/
