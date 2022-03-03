@@ -11,7 +11,7 @@
 
 using UnityEngine;
 
-public abstract class GameBaseState
+public abstract class GameBaseState : MonoBehaviour
 {
     public abstract void EnterState();
 

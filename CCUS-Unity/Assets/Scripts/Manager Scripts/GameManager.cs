@@ -20,12 +20,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     GameBaseState currentState;
-    GameMenuState MenuState = new GameMenuState();
-    GameEducationState EducationState = new GameEducationState();
-    GameSimulationState SimulationState = new GameSimulationState();
+    GameMenuState MenuState;
+    GameEducationState EducationState;
+    GameSimulationState SimulationState;
 
-    void Start()
+    void Awake()
     {
+        SimulationState = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>();
         //Sets the current state to whatever is set in the Inspector as default state
         if (StartingGameState == GameStates.Menu)
         {
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Runs the UpdateState() function in the currently set state script
-        currentState.UpdateState();
+        if (currentState)
+            currentState.UpdateState();
     }
 }
 

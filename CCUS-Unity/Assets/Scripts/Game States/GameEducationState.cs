@@ -2,8 +2,8 @@
  * Created by: Coleton Wheeler
  * Created on: 3/1/22
  * 
- * Last edited by: N/A
- * Last edited on: N/A
+ * Last edited by: Coleton Wheeler
+ * Last edited on: 3/1/22
  * 
  * Description: Class to handle the game during the Education State
  *****/
