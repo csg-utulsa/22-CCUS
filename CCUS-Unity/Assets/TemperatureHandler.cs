@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TemperatureHandler : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public Image CarbonBarFill;
-    float currentPPM = 417.5f
+    float currentPPM = 417.5f;
 
     [Header("Set in Inspector or Dynamically")]
     [SerializeField] private float _maxFillAmount = 100f;
@@ -31,6 +32,6 @@ public class TemperatureHandler : MonoBehaviour
     // Checks PPM before temperature. Then sets a temperature value. Every year, updates  
     void FixedUpdate()
     {
-        _annualTemperature = (.006) * currentPPM + _avgTemperature;
+        _annualTemperature = (.006f) * currentPPM + _avgTemperature;
     }
 }
