@@ -9,10 +9,10 @@ public class SimulationDataScriptableObject : ScriptableObject
     [Header("Set in Inspector")]
     public int percentageCCUS = 0;
     public int year = 2022;
-    public int secondsPerYear = 15;
+    public int secondsPerYear = 3;
 
     [Header("Set in Inspector (PPM values)")]
-    [SerializeField] private float defaultPPM = 417.5f;
+    public float defaultPPM = 417.5f;
     public float naturalCarbonEmissions = 7.5f;
     public float industryCarbonEmissions = 2.5f;
     public float naturalCarbonSink = 7.5f;
