@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/one.unity
+    guid: 0104b264ac8efb245b6ba9f17992f17f
+  - enabled: 0
+    path: Assets/StarterAssets/FirstPersonController/Scenes/Playground.unity
+    guid: 707acc8dffb72b144bb1ffbe1c965f3d
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f1db054874d75e64ea820dffcf87c6a2, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25ad8158502db024a9ec378abb87aa7a, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4521bed662e417a498d564bc1289f680, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 421eaca32abf6f846ba3cac8ec2fb188, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0b451920053315d499afcf1faf78a6ea, type: 2}
