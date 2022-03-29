@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameStates StartingGameState; 
     public static GameManager instance { get; private set; }
 
+    /* Make a new state for each game state/scene
+     * 
+     * Make sure to add accompanied Enum for the game state, as well as startup if logic
+     */
     GameBaseState currentState;
     GameMenuState MenuState;
     GameEducationState EducationState;
@@ -26,7 +30,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
+        //This isn't a great implementation yet. At the moment, every new scene will need a State variable setup like this. Along with an if statement accompanying it               
         SimulationState = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>();
+
+
         //Sets the current state to whatever is set in the Inspector as default state
         if (StartingGameState == GameStates.Menu)
         {
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            //If Enum State doesn't exist, default to MenuState
             currentState = MenuState;
         }
 

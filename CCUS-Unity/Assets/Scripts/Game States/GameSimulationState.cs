@@ -21,7 +21,8 @@ using System;
 
 public class GameSimulationState : GameBaseState
 {
-    public SimulationDataScriptableObject simulationStats;
+    GameManager GM = GameManager.instance;
+    public static SimulationDataScriptableObject simulationStats;
 
     private float timeSinceYearUpdated = 0;
     public override void EnterState()
