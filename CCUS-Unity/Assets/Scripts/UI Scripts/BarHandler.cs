@@ -81,7 +81,7 @@ public class BarHandler : MonoBehaviour
     //Sets values on start
     private void Start()
     {
-        simulationStats = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>().simulationStats;
+        //simulationStats = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>().simulationStats;
         curTempText = CurrentTemperatureText.GetComponent<Text>();
         Debug.Log(simulationStats.currentPPM);
         ResetBar();

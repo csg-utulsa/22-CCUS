@@ -17,12 +17,11 @@ public class GameEducationState : GameBaseState
     public override void EnterState()
     {
         Debug.Log("Entering Education State");
-        //Sets active scene to scene found by build index (not great, but for current build it works)
-        EditorSceneManager.LoadScene(1);
+        EditorSceneManager.LoadScene(0);
     }
 
     public override void UpdateState()
     {
-
+        Debug.Log("Currently running Education State");
     }
 }

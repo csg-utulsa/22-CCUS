@@ -33,8 +33,8 @@ public class GameSimulationState : GameBaseState
 
         Debug.Log("Entering Simulation State");
         //Sets active scene to scene found by build index (not great, but for current build it works)
-        EditorSceneManager.LoadScene(2);
-        simulationStats.SetupObject();
+        EditorSceneManager.LoadScene(1);
+        //simulationStats.SetupObject();
     }
 
     public override void UpdateState()

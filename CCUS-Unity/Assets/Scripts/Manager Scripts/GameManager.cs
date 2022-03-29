@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
      * Make sure to add accompanied Enum for the game state, as well as startup if logic
      */
     GameBaseState currentState;
+
     GameMenuState MenuState;
     GameEducationState EducationState;
     GameSimulationState SimulationState;
@@ -41,7 +42,9 @@ public class GameManager : MonoBehaviour
         }
 
         //This isn't a great implementation yet. At the moment, every new scene will need a State variable setup like this. Along with an if statement accompanying it               
-        SimulationState = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>();
+        SimulationState = this.GetComponentInChildren<GameSimulationState>();
+        EducationState = this.GetComponentInChildren<GameEducationState>();
+        //EducationState = GameObject.Find("EducationManager").GetComponent<GameSimulationState>();
 
 
         //Sets the current state to whatever is set in the Inspector as default state
@@ -69,9 +72,28 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currentState.name);
         //Runs the UpdateState() function in the currently set state script
         if (currentState)
             currentState.UpdateState();
+    }
+
+    public void ChangeState(string newState)
+    {
+        //currentState = newState;
+        currentState.EnterState();
+    }
+
+    public void setSimulation()
+    {
+        currentState = SimulationState;
+        currentState.EnterState();
+    }
+
+    public void setEducation()
+    {
+        currentState = EducationState;
+        currentState.EnterState();
     }
 }
 
