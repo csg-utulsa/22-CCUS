@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CarbonManagerScriptableObject
   m_EditorClassIdentifier: 
   percentageCCUS: 0
+  year: 2022
+  secondsPerYear: 15
   defaultPPM: 417.5
   naturalCarbonEmissions: 7.5
   industryCarbonEmissions: 2.5
