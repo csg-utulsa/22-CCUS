@@ -14,9 +14,21 @@ using UnityEngine;
 
 public class ManagersDontDestroy : MonoBehaviour
 {
+
+    public static ManagersDontDestroy instance;
+
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("Managers exist. Deleting...");
+            Destroy(this.gameObject);
+        }
     }
 }

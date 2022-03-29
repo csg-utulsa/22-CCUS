@@ -5,7 +5,7 @@
  * Last edited by: Coleton Wheeler
  * Last edited on: 3/3/22
  * 
- * Description: Class to handle the game during the Simulation State
+ * Description: Class to handle startup and update() handling while in the Simulation State
  *****/
 
 using UnityEngine;

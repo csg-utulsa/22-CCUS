@@ -31,6 +31,15 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance);
+        }
+
         //This isn't a great implementation yet. At the moment, every new scene will need a State variable setup like this. Along with an if statement accompanying it               
         SimulationState = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>();
 
