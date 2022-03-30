@@ -27,19 +27,20 @@ public class GameSimulationState : GameBaseState
     private float timeSinceYearUpdated = 0;
     public override void EnterState()
     {
-        simulationStats = ScriptableObject.CreateInstance<SimulationDataScriptableObject>();
+        //simulationStats = ScriptableObject.CreateInstance<SimulationDataScriptableObject>();
 
         //Run scriptable object setup
 
         Debug.Log("Entering Simulation State");
         //Sets active scene to scene found by build index (not great, but for current build it works)
-        EditorSceneManager.LoadScene(1);
+        if (EditorSceneManager.GetActiveScene().buildIndex != 1)
+            EditorSceneManager.LoadScene(1);
         //simulationStats.SetupObject();
     }
 
     public override void UpdateState()
     {
-        timeSinceYearUpdated += Time.deltaTime;
+        /*timeSinceYearUpdated += Time.deltaTime;
 
         //If year seconds interval has passed
         if (timeSinceYearUpdated >= simulationStats.secondsPerYear)
@@ -49,7 +50,7 @@ public class GameSimulationState : GameBaseState
         }
 
         UpdateCarbonInformation();
-        UpdateMoneyInformation();
+        UpdateMoneyInformation();*/
     }
 
     

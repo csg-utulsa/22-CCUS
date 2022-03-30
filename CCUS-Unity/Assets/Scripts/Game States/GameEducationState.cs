@@ -17,7 +17,8 @@ public class GameEducationState : GameBaseState
     public override void EnterState()
     {
         Debug.Log("Entering Education State");
-        EditorSceneManager.LoadScene(0);
+        if (EditorSceneManager.GetActiveScene().buildIndex != 0)
+            EditorSceneManager.LoadScene(0);
     }
 
     public override void UpdateState()

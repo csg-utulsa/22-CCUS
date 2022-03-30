@@ -19,9 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameStates StartingGameState; 
     public static GameManager instance { get; private set; }
 
+    private Dictionary<string, GameBaseState> gameStatesDictionary;
+
     /* Make a new state for each game state/scene
      * 
-     * Make sure to add accompanied Enum for the game state, as well as startup if logic
+     * Make sure to add accompanied Enum for the game state and add to dictionary
      */
     GameBaseState currentState;
 
@@ -31,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-
         if (instance == null)
         {
             instance = this;
@@ -41,28 +42,17 @@ public class GameManager : MonoBehaviour
             Destroy(instance);
         }
 
-        //This isn't a great implementation yet. At the moment, every new scene will need a State variable setup like this. Along with an if statement accompanying it               
-        SimulationState = this.GetComponentInChildren<GameSimulationState>();
-        EducationState = this.GetComponentInChildren<GameEducationState>();
-        //EducationState = GameObject.Find("EducationManager").GetComponent<GameSimulationState>();
-
+        gameStatesDictionary = new Dictionary<string, GameBaseState>
+        {
+            {"Menu", this.GetComponentInChildren<GameMenuState>()},
+            {"Simulation", this.GetComponentInChildren<GameSimulationState>()},
+            {"Education", this.GetComponentInChildren<GameEducationState>()}
+        };
 
         //Sets the current state to whatever is set in the Inspector as default state
-        if (StartingGameState == GameStates.Menu)
+        if (!gameStatesDictionary.TryGetValue(StartingGameState.ToString(), out currentState))
         {
-            currentState = MenuState;
-        }
-        else if (StartingGameState == GameStates.Education)
-        {
-            currentState = EducationState;
-        }
-        else if (StartingGameState == GameStates.Simulation)
-        {
-            currentState = SimulationState;
-        }
-        else
-        {
-            //If Enum State doesn't exist, default to MenuState
+            //If enum does not match a dictionary key, set to default MenuState
             currentState = MenuState;
         }
 
@@ -78,22 +68,18 @@ public class GameManager : MonoBehaviour
             currentState.UpdateState();
     }
 
+    //Passes in a key to the dictionary of different game states
+    //This also sucks as an implementation, but it suffices and isn't too hard to add onto later
     public void ChangeState(string newState)
     {
-        //currentState = newState;
-        currentState.EnterState();
-    }
-
-    public void setSimulation()
-    {
-        currentState = SimulationState;
-        currentState.EnterState();
-    }
-
-    public void setEducation()
-    {
-        currentState = EducationState;
-        currentState.EnterState();
+        if (gameStatesDictionary.TryGetValue(newState, out currentState))
+        {
+            currentState.EnterState();
+        }
+        else
+        {
+            throw new System.Exception("State not found");
+        }
     }
 }
 
