@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68c17d8b0a097a2428d9631ee11fa775, type: 3}
-  m_Name: CarbonManagerScriptableObject
+  m_Name: SimulationDataScriptableObject
   m_EditorClassIdentifier: 
   percentageCCUS: 0
   year: 2022
-  secondsPerYear: 15
+  secondsPerYear: 3
   defaultPPM: 417.5
   naturalCarbonEmissions: 7.5
   industryCarbonEmissions: 2.5
   naturalCarbonSink: 7.5
   hundredPercentCCUS_PPM: 5
-  currentPPM: 417.5
-  annualIncrease: 2.5
-  netZeroPPM: 2.5
-  percentageForNeutral: 50
+  currentPPM: 0
+  annualIncrease: 0
+  netZeroPPM: 0
+  percentageForNeutral: 0

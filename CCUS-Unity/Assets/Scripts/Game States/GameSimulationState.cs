@@ -3,54 +3,63 @@
  * Created on: 3/1/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 3/3/22
+ * Last edited on: 3/31/22
  * 
- * Description: Class to handle startup and update() handling while in the Simulation State
+ * Description: Class to handle the game during the Simulation State
  *****/
 
 using UnityEngine;
 using UnityEditor.SceneManagement;
-using UnityEngine.Events;
 using System;
 
-/* ------------ FORMULAS USED ------------- */
+/* ------------ CCUS FORMULAS USED ------------- */
 //[A] Calculating the anual increase of air CCUS -> AnnualIncrease = (natural emissions + industry emissions) - ((ppm value of 100% CCUS / 100) * current percentage CCUS) - (natural carbon sink)
 //[B] Calculating the amount of CO2 PPM needed to remove to achieve a net zero carbon emissions -> NetZeroPPM = (natural + industry) - (natural carbon sink)
 //[C] Calculating the percentage of CCUS (based on some set max 100% value) to achieve net zero carbon emissions -> Percentage needed = (NetZeroPPM / MaxPPM of CCUS) * 100
 
+/* ------------ MONEY FORMULAS USED ------------- */
+//[D] Calculates how much money it costs to remove 1 annual PPM per year -> CostRemovalPer1PPM = 4.526 billion * CostPerTonCarbonRemoved
+//[E] Calculates the annual cost for neutral carbon emissions -> CarbonNeutralPPMCost = CostRemovalPer1PPM * NetZeroPPM
+//[F] Calculates how much annually it would cost to max out your CCUS -> 100% CCUS = 5PPM Annual Removal = CostRemovalPer1PPM * 5
+//[] Description -> CCUS cost = (1 - CCUS% / 100) * (100% CCUS)
+
 
 public class GameSimulationState : GameBaseState
 {
-    GameManager GM = GameManager.instance;
-    public static SimulationDataScriptableObject simulationStats;
+    GameManager GM;
+    SimulationDataScriptableObject simulationData;
 
     private float timeSinceYearUpdated = 0;
+
+    public void Start()
+    {
+        GM = GameManager.instance;
+        simulationData = GM.simData;
+        Debug.Log(simulationData.year);
+    }
     public override void EnterState()
     {
-        //simulationStats = ScriptableObject.CreateInstance<SimulationDataScriptableObject>();
-
-        //Run scriptable object setup
-
         Debug.Log("Entering Simulation State");
+
         //Sets active scene to scene found by build index (not great, but for current build it works)
         if (EditorSceneManager.GetActiveScene().buildIndex != 1)
             EditorSceneManager.LoadScene(1);
-        //simulationStats.SetupObject();
     }
 
     public override void UpdateState()
     {
-        /*timeSinceYearUpdated += Time.deltaTime;
+        Debug.Log(simulationData.currentPPM);
+        timeSinceYearUpdated += Time.deltaTime;
 
         //If year seconds interval has passed
-        if (timeSinceYearUpdated >= simulationStats.secondsPerYear)
+        if (timeSinceYearUpdated >= simulationData.secondsPerYear)
         {
-            simulationStats.year += 1;
+            simulationData.year += 1;
             timeSinceYearUpdated = 0;
         }
 
         UpdateCarbonInformation();
-        UpdateMoneyInformation();*/
+        UpdateMoneyInformation();
     }
 
     
@@ -58,21 +67,30 @@ public class GameSimulationState : GameBaseState
     private void UpdateCarbonInformation()
     {
         //Calculates the Annual Increase of CO2 PPM based on factors ---- Formula [A]
-        simulationStats.annualIncrease = (simulationStats.naturalCarbonEmissions + simulationStats.industryCarbonEmissions) -
-            ((simulationStats.hundredPercentCCUS_PPM / 100f) * simulationStats.percentageCCUS) - simulationStats.naturalCarbonSink;
+        simulationData.annualIncrease = (simulationData.naturalCarbonEmissions + simulationData.industryCarbonEmissions) -
+            ((simulationData.hundredPercentCCUS_PPM / 100f) * simulationData.percentageCCUS) - simulationData.naturalCarbonSink;
 
-        float increaseAmount = (Time.deltaTime / simulationStats.secondsPerYear) * simulationStats.annualIncrease;
-        simulationStats.IncreaseCarbonAmount(increaseAmount);
+        float increaseAmount = (Time.deltaTime / simulationData.secondsPerYear) * simulationData.annualIncrease;
+        simulationData.currentPPM += increaseAmount;
 
         //Calculates the neccessary PPM removal for net neutral CO2 emissions ---- Formula [B]
-        simulationStats.netZeroPPM = (simulationStats.naturalCarbonEmissions + simulationStats.industryCarbonEmissions) - simulationStats.naturalCarbonSink;
+        simulationData.netZeroPPM = (simulationData.naturalCarbonEmissions + simulationData.industryCarbonEmissions) - simulationData.naturalCarbonSink;
         //Calculates the necessary percentage of CCUS for net neutral CO2 emissions ---- Formula [C]
-        simulationStats.percentageForNeutral = (int)((simulationStats.netZeroPPM / simulationStats.hundredPercentCCUS_PPM) * 100);
+        simulationData.percentageForNeutral = (int)((simulationData.netZeroPPM / simulationData.hundredPercentCCUS_PPM) * 100);
+
+        Debug.Log(simulationData.currentPPM);
     }
 
     private void UpdateMoneyInformation()
     {
 
+    }
+
+    private float roundToTwoDecimalTrillion(float unrounded)
+    {
+        float inTermsOfTrillion = unrounded / Mathf.Pow(10, 12);
+        int tempInt = (int)(inTermsOfTrillion * 100f);
+        return tempInt / 100f;
     }
 
 }

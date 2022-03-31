@@ -3,7 +3,7 @@
  * Created on: 3/1/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 3/1/22
+ * Last edited on: 3/31/22
  * 
  * Description: Class to handle the game during the Education State
  *****/
@@ -23,6 +23,6 @@ public class GameEducationState : GameBaseState
 
     public override void UpdateState()
     {
-        Debug.Log("Currently running Education State");
+
     }
 }

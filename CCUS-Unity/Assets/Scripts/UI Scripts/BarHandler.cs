@@ -95,7 +95,7 @@ public class BarHandler : MonoBehaviour
     // 
     private void Update()
     {
-        float changePPM = simulationStats.currentPPM - simulationStats.defaultPPM;
+        /*changePPM = simulationStats.currentPPM - simulationStats.defaultPPM;
         //Debug.Log(changePPM);
         float changeTemp = changePPM / 91.666667f; // conversion in Fahrenheit 1c = 1.8 f
         CurrentTemp = changeTemp + StartingTemp;
@@ -104,6 +104,6 @@ public class BarHandler : MonoBehaviour
         float percentageTempFill = ((CurrentTemp - LowestTemp) / (HighestTemp - LowestTemp)) * 100;
         setFill(percentageTempFill);
 
-        curTempText.text = "Current Temp: " + ((float)Mathf.Round(CurrentTemp * 100f) / 100f).ToString();
+        curTempText.text = "Current Temp: " + ((float)Mathf.Round(CurrentTemp * 100f) / 100f).ToString();*/
     }
 }

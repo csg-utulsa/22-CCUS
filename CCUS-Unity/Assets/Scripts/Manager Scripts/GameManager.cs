@@ -2,11 +2,12 @@
  * Created by: Coleton Wheeler
  * Created on: 3/1/22
  * 
- * Last edited by: N/A
- * Last edited on: N/A
+ * Last edited by: Coleton Wheeler
+ * Last edited on: 3/31/22
  * 
  * Description: Handles all scenes and interactions between them.
- * Handles the GameState's, running Update for each script template through here.
+ * Handles the GameStates, running Update for each script template through here.
+ * Also is the accesser for the SimulationData object. Inefficiently going through Instance.simData to access variables..
  *****/
 
 using System.Collections;
@@ -21,12 +22,14 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<string, GameBaseState> gameStatesDictionary;
 
+    [HideInInspector]
+    public SimulationDataScriptableObject simData;
+
     /* Make a new state for each game state/scene
      * 
      * Make sure to add accompanied Enum for the game state and add to dictionary
      */
     GameBaseState currentState;
-
     GameMenuState MenuState;
     GameEducationState EducationState;
     GameSimulationState SimulationState;
@@ -41,6 +44,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+
+        //Initialize simulation data with default values
+        simData = SimulationDataScriptableObject.CreateInstance<SimulationDataScriptableObject>();
+        Debug.Log(simData.year);
+        resetSimData();
 
         gameStatesDictionary = new Dictionary<string, GameBaseState>
         {
@@ -62,10 +70,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentState.name);
         //Runs the UpdateState() function in the currently set state script
         if (currentState)
             currentState.UpdateState();
+    }
+
+    //Call this function to reset all sim data
+    public void resetSimData()
+    {
+        Debug.Log("Resetting sim data with default values...");
     }
 
     //Passes in a key to the dictionary of different game states
