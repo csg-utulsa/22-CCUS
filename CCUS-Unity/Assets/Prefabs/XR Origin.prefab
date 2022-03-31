@@ -794,6 +794,7 @@ GameObject:
   - component: {fileID: 5662571441082591416}
   - component: {fileID: 5662571441082591417}
   - component: {fileID: 5662571441082591418}
+  - component: {fileID: 4459131241725820809}
   - component: {fileID: 5662571441082591419}
   m_Layer: 0
   m_Name: XR Origin
@@ -925,7 +926,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.73
+  m_Height: 1.7
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -946,6 +947,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 5662571441082591421}
+--- !u!114 &4459131241725820809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662571441082591422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cbf19210b75cc47b1b0692cae7516d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 16
 --- !u!114 &5662571441082591419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LocomotionProvider: {fileID: 5662571441082591367}
-  m_MinHeight: 0
+  m_MinHeight: 3.74
   m_MaxHeight: Infinity
 --- !u!1 &5662571441126797833
 GameObject:
