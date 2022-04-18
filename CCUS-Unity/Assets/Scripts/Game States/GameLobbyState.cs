@@ -14,6 +14,7 @@ using UnityEditor.SceneManagement;
 
 public class GameLobbyState : GameBaseState
 {
+    private bool completedEducation;
     public override void EnterState()
     {
         Debug.Log("Entering Lobby State");
