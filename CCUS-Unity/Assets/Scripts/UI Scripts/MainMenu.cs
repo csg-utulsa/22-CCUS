@@ -17,6 +17,6 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-        gm.ChangeState("Lobby");
+        gm.ChangeState("Simulation");
     }
 }

@@ -31,24 +31,24 @@ public class InformationUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //gss = GameObject.Find("SimulationManager");
-        //gssScript = gss.GetComponent<GameSimulationState>();
-        //_currentYearText.text = "Current Year: " + gssScript.simulationStats.year ;
-        //_currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
-        //_currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
-        //_currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
-        //_carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
-    }
+        /*gss = GameObject.Find("SimulationManager");
+        gssScript = gss.GetComponent<GameSimulationState>();
+        _currentYearText.text = "Current Year: " + gssScript.simulationStats.year ;
+        _currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
+        _currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
+        _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
+        _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
+*/    }
 
     // Update is called once per frame
     void Update()
     {
-        //_currentYearText.text = "Current Year: " + gssScript.simulationStats.year;
-        //_currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
-        //_currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
-        //_currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
-        //_carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
-    }
+        /*_currentYearText.text = "Current Year: " + gssScript.simulationStats.year;
+        _currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
+        _currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
+        _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
+        _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
+*/    }
 
     private float roundToTwoDecimals(float unrounded)
     {
