@@ -8,16 +8,16 @@ public class SimulationDataScriptableObject : ScriptableObject
 {
     //Default values for inspector
     [Header("Set in Inspector")]
-    public int startingPercentageCCUS = 100;
+    public int startingPercentageCCUS = 0;
     public int defaultYear = 2022;
-    public int secondsPerYear = 15;
+    public int secondsPerYear = 1;
 
     [Header("Set in Inspector (in trillions)")]
     public float startingMoney = 10f;
     public float annualBudget = 0.5f;
 
     [Header("Set in Inspector (in dollars)")]
-    public float costPerTonCarbonRemoved = 230;
+    public float costPerTonCarbonRemoved = 230f;
 
     [Header("Set in Inspector (in PPM)")]
     public float startingPPM = 417.5f;

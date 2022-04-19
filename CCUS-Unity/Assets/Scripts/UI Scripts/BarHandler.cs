@@ -19,7 +19,7 @@ using TMPro;
 
 public class BarHandler : MonoBehaviour
 {
-
+    private GameManager gm;
     private SimulationDataScriptableObject simulationStats;
 
 
@@ -82,7 +82,7 @@ public class BarHandler : MonoBehaviour
     //Sets values on start
     private void Start()
     {
-        //simulationStats = GameObject.Find("SimulationManager").GetComponent<GameSimulationState>().simulationStats;
+        gm = GameManager.GM;
         curTempText = CurrentTemperatureText.GetComponent<TMP_Text>();
         Debug.Log(simulationStats.currentPPM);
         ResetBar();
@@ -96,6 +96,13 @@ public class BarHandler : MonoBehaviour
     // 
     private void Update()
     {
+        if (simulationStats == null)
+        {
+            Debug.LogWarning("Simulation data is null");
+            simulationStats = gm.simData;
+            return;
+        }
+
         float changePPM = simulationStats.currentPPM - simulationStats.startingPPM;
         //Debug.Log(changePPM);
         float changeTemp = changePPM / 91.666667f; // conversion in Fahrenheit 1c = 1.8 f

@@ -101,7 +101,7 @@ public class GameSimulationState : GameBaseState
         simulationData.costOfMaxCCUS = simulationData.costToRemovePPM * simulationData.hundredPercentCCUS_PPM;
 
         //Calculates the annual cost you're spending on CCUS ---- Formula [G]
-        simulationData.annualCostOfCCUS = (simulationData.percentageCCUS / 100) * (simulationData.costOfMaxCCUS);
+        simulationData.annualCostOfCCUS = (simulationData.percentageCCUS / 100f) * (simulationData.costOfMaxCCUS);
     }
 
     private float roundToTwoDecimalTrillion(float unrounded)

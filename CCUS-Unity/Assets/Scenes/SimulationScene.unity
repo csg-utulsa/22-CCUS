@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -430,13 +430,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31036cfb423b94f4da61d826e175e985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gss: {fileID: 0}
   _currentYearText: {fileID: 1195262751}
   _currentAnnualIncreaseText: {fileID: 1058491871}
   _currentPercentageText: {fileID: 2083423211}
   _currentPPM_Text: {fileID: 1025187481}
   _carbonNeutralCCUS_Text: {fileID: 659697597}
   _sliderCCUS: {fileID: 998969580}
+  currentMoney: {fileID: 313298172}
+  annualSpending: {fileID: 75298825}
+  annualBudget: {fileID: 224055623}
 --- !u!1 &224055621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1361,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 217040640}
         m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
         m_MethodName: updatePercentage
         m_Mode: 1
@@ -2531,7 +2533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.87, y: -5.05}
+  m_AnchoredPosition: {x: 6.87, y: -5.2660055}
   m_SizeDelta: {x: 1.6, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1703789499

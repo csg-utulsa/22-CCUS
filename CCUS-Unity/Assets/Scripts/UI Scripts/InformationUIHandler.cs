@@ -18,7 +18,6 @@ using UnityEngine.UI;
 public class InformationUIHandler : MonoBehaviour
 {
     [Header("Set in Inspector (Carbon Data)")]
-    [SerializeField] private GameObject gss;
     [SerializeField] private Text _currentYearText;
     [SerializeField] private Text _currentAnnualIncreaseText;
     [SerializeField] private Text _currentPercentageText;
@@ -26,29 +25,39 @@ public class InformationUIHandler : MonoBehaviour
     [SerializeField] private Text _carbonNeutralCCUS_Text;
     [SerializeField] private Slider _sliderCCUS;
 
-    private GameSimulationState gssScript;
+    [Header("Set in Inspector (Money Data)")]
+    public Text currentMoney;
+    public Text annualSpending;
+    public Text annualBudget;
+
+    private SimulationDataScriptableObject simulationData;
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Awake()
     {
-        /*gss = GameObject.Find("SimulationManager");
-        gssScript = gss.GetComponent<GameSimulationState>();
-        _currentYearText.text = "Current Year: " + gssScript.simulationStats.year ;
-        _currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
-        _currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
-        _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
-        _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
-*/    }
+        gm = GameManager.GM;
+        simulationData = gm.simData;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        /*_currentYearText.text = "Current Year: " + gssScript.simulationStats.year;
-        _currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(gssScript.simulationStats.annualIncrease);
-        _currentPercentageText.text = "Current CCUS Percentage: " + gssScript.simulationStats.percentageCCUS + "%";
-        _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(gssScript.simulationStats.currentPPM) + "PPM";
-        _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + gssScript.simulationStats.percentageForNeutral + "%";
-*/    }
+        if (simulationData == null)
+        {
+            Debug.LogWarning("Simulation data is null");
+            simulationData = gm.simData;
+            return;
+        }
+        _currentYearText.text = "Current Year: " + simulationData.year;
+        _currentAnnualIncreaseText.text = "Current Annual PPM Increase: " + roundToTwoDecimals(simulationData.annualIncrease);
+        _currentPercentageText.text = "Current CCUS Percentage: " + simulationData.percentageCCUS + "%";
+        _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(simulationData.currentPPM) + "PPM";
+        _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + simulationData.percentageForNeutral + "%";
+        currentMoney.text = "Current Money: " + roundToTwoDecimals(simulationData.currentMoney);
+        annualSpending.text = "Annual Spending: " + roundToTwoDecimals(simulationData.annualCostOfCCUS);
+        annualBudget.text = "Annual Budget: " + roundToTwoDecimals(simulationData.annualBudget);
+    }
 
     private float roundToTwoDecimals(float unrounded)
     {
@@ -58,7 +67,7 @@ public class InformationUIHandler : MonoBehaviour
 
     public void updatePercentage()
     {
-        //gssScript.simulationStats.percentageCCUS = (int) Mathf.Round(_sliderCCUS.GetComponent<Slider>().value * 100f);
+        simulationData.percentageCCUS = (int) Mathf.Round(_sliderCCUS.GetComponent<Slider>().value * 100f);
     }
 
 }
