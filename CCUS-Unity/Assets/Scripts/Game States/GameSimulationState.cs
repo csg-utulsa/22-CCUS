@@ -9,8 +9,8 @@
  *****/
 
 using UnityEngine;
-using UnityEditor.SceneManagement;
 using System;
+using UnityEngine.SceneManagement;
 
 /* ------------ CCUS FORMULAS USED ------------- */
 //[A] Calculating the anual increase of air CCUS -> AnnualIncrease = (natural emissions + industry emissions) - ((ppm value of 100% CCUS / 100) * current percentage CCUS) - (natural carbon sink)
@@ -42,8 +42,8 @@ public class GameSimulationState : GameBaseState
         Debug.Log("Entering Simulation State");
 
         //Sets active scene to scene found by build name (not great, but for current build it works)
-        if (EditorSceneManager.GetActiveScene().name != "SimulationScene")
-            EditorSceneManager.LoadScene("SimulationScene");
+        if (SceneManager.GetActiveScene().name != "SimulationScene")
+            SceneManager.LoadScene("SimulationScene");
     }
 
     public override void UpdateState()

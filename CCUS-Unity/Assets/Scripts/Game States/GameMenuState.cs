@@ -9,16 +9,17 @@
  *****/
 
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+
 
 public class GameMenuState : GameBaseState
 {
     public override void EnterState()
     {
         Debug.Log("Entering Menu State");
-        if(EditorSceneManager.GetActiveScene().name != "MenuScene")
+        if(SceneManager.GetActiveScene().name != "MenuScene")
         {
-            EditorSceneManager.LoadScene("MenuScene");
+            SceneManager.LoadScene("MenuScene");
         }
     }
 

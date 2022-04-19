@@ -10,15 +10,15 @@
 
 
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class GameEducationState : GameBaseState
 {
     public override void EnterState()
     {
         Debug.Log("Entering Education State");
-        if (EditorSceneManager.GetActiveScene().name != "EducationScene")
-            EditorSceneManager.LoadScene("EducationScene");
+        if (SceneManager.GetActiveScene().name != "EducationScene")
+            SceneManager.LoadScene("EducationScene");
     }
 
     public override void UpdateState()

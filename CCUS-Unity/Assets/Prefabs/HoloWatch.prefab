@@ -967,6 +967,7 @@ MonoBehaviour:
   _minFillAmount: 0
   StartingTemp: 91
   CurrentTemp: 0
+  curTempText: {fileID: 0}
 --- !u!1 &4301913155223568918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.14}
+  m_AnchoredPosition: {x: 0, y: 0.14001465}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5272836918738159320
@@ -2623,6 +2624,8 @@ GameObject:
   - component: {fileID: 8999826552713762529}
   - component: {fileID: 4889811810927210955}
   - component: {fileID: 4978631599733110430}
+  - component: {fileID: 2886260271483777617}
+  - component: {fileID: 3881621259616898774}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -2727,12 +2730,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6ad3f3cb48aa54f8c1a6f6c264a1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarbonBarFill: {fileID: 0}
-  CurrentTemperatureText: {fileID: 0}
+  CarbonBarFill: {fileID: 5187233457536428447}
+  CurrentTemperatureText: {fileID: 6949846546173649478}
   _maxFillAmount: 100
   _minFillAmount: 0
   StartingTemp: 91
   CurrentTemp: 0
+  curTempText: {fileID: 681659348968162811}
 --- !u!114 &4978631599733110430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,6 +2758,42 @@ MonoBehaviour:
   currentMoney: {fileID: 4314076887783618454}
   annualSpending: {fileID: 2555184739195806391}
   annualBudget: {fileID: 2153164563060986390}
+--- !u!114 &2886260271483777617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999826552713762543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &3881621259616898774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999826552713762543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab68ce6587aab0146b8dabefbd806791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClickSpeed: 0.3
+  m_MoveDeadzone: 0.6
+  m_RepeatDelay: 0.5
+  m_RepeatRate: 0.1
+  m_TrackedDeviceDragThresholdMultiplier: 1.4
+  m_MaxTrackedDeviceRaycastDistance: 1000
+  m_EnableXRInput: 1
+  m_EnableMouseInput: 1
+  m_EnableTouchInput: 1
 --- !u!1 &8999826553173884690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5921569, g: 0.8734267, b: 0.90588236, a: 0.47843137}
+  m_Color: {r: 0.5921569, g: 0.8734267, b: 0.90588236, a: 0.6117647}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2924,7 +2964,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5
+  m_PixelsPerUnitMultiplier: 118.7
 --- !u!1 &9029293985852396009
 GameObject:
   m_ObjectHideFlags: 0

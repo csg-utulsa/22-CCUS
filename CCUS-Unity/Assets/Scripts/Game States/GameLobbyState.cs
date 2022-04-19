@@ -10,7 +10,7 @@
 
 
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class GameLobbyState : GameBaseState
 {
@@ -18,8 +18,8 @@ public class GameLobbyState : GameBaseState
     public override void EnterState()
     {
         Debug.Log("Entering Lobby State");
-        if (EditorSceneManager.GetActiveScene().name != "LobbyScene")
-            EditorSceneManager.LoadScene("LobbyScene");
+        if (SceneManager.GetActiveScene().name != "LobbyScene")
+            SceneManager.LoadScene("LobbyScene");
     }
 
     public override void UpdateState()

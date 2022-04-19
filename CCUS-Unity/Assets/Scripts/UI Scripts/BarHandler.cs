@@ -15,7 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+// using TMPro;
 
 public class BarHandler : MonoBehaviour
 {
@@ -40,7 +40,7 @@ public class BarHandler : MonoBehaviour
     [Header("Do Not Touch, dynamic temperature")]
     [SerializeField] private float CurrentTemp;
 
-    private TMP_Text curTempText;
+    public Text curTempText;
 
     //Allows other scripts to adjust the fill amount.
     public void setFill(float fillTotal)
@@ -83,7 +83,6 @@ public class BarHandler : MonoBehaviour
     private void Start()
     {
         gm = GameManager.GM;
-        curTempText = CurrentTemperatureText.GetComponent<TMP_Text>();
         Debug.Log(simulationStats.currentPPM);
         ResetBar();
         CurrentTemp = StartingTemp;
@@ -112,6 +111,6 @@ public class BarHandler : MonoBehaviour
         float percentageTempFill = ((CurrentTemp - LowestTemp) / (HighestTemp - LowestTemp)) * 100;
         setFill(percentageTempFill);
 
-        curTempText.text = "Current Temp: " + ((float)Mathf.Round(CurrentTemp * 100f) / 100f).ToString();
+        curTempText.text = "Current Temp: ";// + ((float)Mathf.Round(CurrentTemp * 100f) / 100f).ToString();
     }
 }
