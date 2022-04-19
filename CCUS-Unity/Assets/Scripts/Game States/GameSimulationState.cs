@@ -21,7 +21,7 @@ using System;
 //[D] Calculates how much money it costs to remove 1 annual PPM per year -> CostRemovalPer1PPM = 4.526 billion * CostPerTonCarbonRemoved
 //[E] Calculates the annual cost for neutral carbon emissions -> CarbonNeutralPPMCost = CostRemovalPer1PPM * NetZeroPPM
 //[F] Calculates how much annually it would cost to max out your CCUS -> 100% CCUS = 5PPM Annual Removal = CostRemovalPer1PPM * 5
-//[] Description -> CCUS cost = (1 - CCUS% / 100) * (100% CCUS)
+//[G] Description -> CCUS cost = (1 - CCUS% / 100) * (100% CCUS)
 
 
 public class GameSimulationState : GameBaseState
@@ -34,21 +34,27 @@ public class GameSimulationState : GameBaseState
     public void Start()
     {
         gm = GameManager.GM;
-        simulationData = gm.simData;
-        Debug.Log(simulationData.year);
+        if (gm.simData != null)
+            simulationData = gm.simData;
     }
     public override void EnterState()
     {
         Debug.Log("Entering Simulation State");
 
-        //Sets active scene to scene found by build index (not great, but for current build it works)
+        //Sets active scene to scene found by build name (not great, but for current build it works)
         if (EditorSceneManager.GetActiveScene().name != "SimulationScene")
             EditorSceneManager.LoadScene("SimulationScene");
     }
 
     public override void UpdateState()
     {
-        Debug.Log(simulationData.currentPPM);
+        if (simulationData == null)
+        {
+            Debug.LogWarning("Simulation data is null");
+            simulationData = gm.simData;
+            return;
+        }
+
         timeSinceYearUpdated += Time.deltaTime;
 
         //If year seconds interval has passed
@@ -77,13 +83,25 @@ public class GameSimulationState : GameBaseState
         simulationData.netZeroPPM = (simulationData.naturalCarbonEmissions + simulationData.industryCarbonEmissions) - simulationData.naturalCarbonSink;
         //Calculates the necessary percentage of CCUS for net neutral CO2 emissions ---- Formula [C]
         simulationData.percentageForNeutral = (int)((simulationData.netZeroPPM / simulationData.hundredPercentCCUS_PPM) * 100);
-
-        Debug.Log(simulationData.currentPPM);
     }
 
     private void UpdateMoneyInformation()
     {
+        //Updates player current money with annual increase * time passed through year
+        simulationData.currentMoney += (simulationData.annualBudget - simulationData.annualCostOfCCUS) * (Time.deltaTime / simulationData.secondsPerYear);
+        Debug.Log(simulationData.currentMoney);
 
+        //Calculates the cost to remove 1PPM of CO2 per year ---- Formula [D]
+        simulationData.costToRemovePPM = 0.004526f * simulationData.costPerTonCarbonRemoved;
+
+        //Calculates the cost required annually for carbon neutral emissions ---- Formula [E]
+        simulationData.costForCarbonNeutral = simulationData.costToRemovePPM * simulationData.netZeroPPM;
+
+        //Calculates how much it would cost annually to max out your CCUS percentage ---- Formula [F]
+        simulationData.costOfMaxCCUS = simulationData.costToRemovePPM * simulationData.hundredPercentCCUS_PPM;
+
+        //Calculates the annual cost you're spending on CCUS ---- Formula [G]
+        simulationData.annualCostOfCCUS = (simulationData.percentageCCUS / 100) * (simulationData.costOfMaxCCUS);
     }
 
     private float roundToTwoDecimalTrillion(float unrounded)

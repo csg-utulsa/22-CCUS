@@ -8,12 +8,13 @@ public class SimulationDataScriptableObject : ScriptableObject
 {
     //Default values for inspector
     [Header("Set in Inspector")]
-    public int startingPercentageCCUS = 0;
+    public int startingPercentageCCUS = 100;
     public int defaultYear = 2022;
     public int secondsPerYear = 15;
 
-    [Header("Set in Inspector (in billions)")]
+    [Header("Set in Inspector (in trillions)")]
     public float startingMoney = 10f;
+    public float annualBudget = 0.5f;
 
     [Header("Set in Inspector (in dollars)")]
     public float costPerTonCarbonRemoved = 230;
@@ -28,7 +29,6 @@ public class SimulationDataScriptableObject : ScriptableObject
 
     //Dynamic Variables
     public int year;
-
     public int percentageCCUS;
     public float currentPPM;
     public float annualIncrease;
@@ -50,7 +50,7 @@ public class SimulationDataScriptableObject : ScriptableObject
         annualIncrease = 0f;
         netZeroPPM = 0f;
         percentageForNeutral = 0;
-        currentMoney = startingPPM;
+        currentMoney = startingMoney;
         costToRemovePPM = 0f;
         costForCarbonNeutral = 0f;
         costOfMaxCCUS = 0f;
