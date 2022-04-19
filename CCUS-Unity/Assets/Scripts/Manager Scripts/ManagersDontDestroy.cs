@@ -15,7 +15,7 @@ using UnityEngine;
 public class ManagersDontDestroy : MonoBehaviour
 {
 
-    public static ManagersDontDestroy instance;
+    private static ManagersDontDestroy instance;
 
     // Start is called before the first frame update
     void Awake()

@@ -16,8 +16,10 @@ public class GameMenuState : GameBaseState
     public override void EnterState()
     {
         Debug.Log("Entering Menu State");
-        //Sets active scene to scene found by build index (not great, but for current build it works)
-        EditorSceneManager.LoadScene(0);
+        if(EditorSceneManager.GetActiveScene().name != "MenuScene")
+        {
+            EditorSceneManager.LoadScene("MenuScene");
+        }
     }
 
     public override void UpdateState()

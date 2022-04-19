@@ -3,7 +3,7 @@
  * Created on: 3/1/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 3/31/22
+ * Last edited on: 4/14/22
  * 
  * Description: Handles all scenes and interactions between them.
  * Handles the GameStates, running Update for each script template through here.
@@ -17,6 +17,35 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    #region GameManager Singleton
+    static private GameManager gm; //refence GameManager
+    static public GameManager GM { get { return gm; } } //public access to read only gm 
+
+    //Check to make sure only one gm of the GameManager is in the scene
+    void CheckGameManagerIsInScene()
+    {
+
+        //Check if instnace is null
+        if (gm == null)
+        {
+            gm = this; //set gm to this gm of the game object
+            Debug.Log(gm);
+        }
+        else //else if gm is not null a Game Manager must already exsist
+        {
+            Destroy(this.gameObject); //In this case you need to delete this gm
+            Debug.Log("Game Manager exists. Deleting...");
+        }
+        Debug.Log(gm);
+    }//end CheckGameManagerIsInScene()
+    #endregion
+
+
+
+    [TextArea]
+    [Tooltip("Doesn't do anything. Just for basic information to project contributors")]
+    public string Notes = "For functionality, please name the scenes in the build after the game state name. Ex: MenuState -> MenuScene";
+
     [Header("Set in Inspector")]
     [SerializeField] GameStates StartingGameState; 
     public static GameManager instance { get; private set; }
@@ -32,30 +61,28 @@ public class GameManager : MonoBehaviour
      */
     GameBaseState currentState;
     GameMenuState MenuState;
+    GameLobbyState LobbyState;
     GameEducationState EducationState;
     GameSimulationState SimulationState;
 
+
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(instance);
-        }
-
+        CheckGameManagerIsInScene();
+    }
+    void Start()
+    {
         //Initialize simulation data with default values
         simData = SimulationDataScriptableObject.CreateInstance<SimulationDataScriptableObject>();
-        Debug.Log(simData.year);
         resetSimData();
 
+        //Dictionary to store game states. Lets the code reference the script by just calling a string value
         gameStatesDictionary = new Dictionary<string, GameBaseState>
         {
-            {"Menu", this.GetComponentInChildren<GameMenuState>()},
-            {"Simulation", this.GetComponentInChildren<GameSimulationState>()},
-            {"Education", this.GetComponentInChildren<GameEducationState>()}
+            {"Menu", this.GetComponent<GameMenuState>()},
+            {"Lobby", this.GetComponent<GameLobbyState>()},
+            {"Simulation", this.GetComponent<GameSimulationState>()},
+            {"Education", this.GetComponent<GameEducationState>()}
         };
 
         //Sets the current state to whatever is set in the Inspector as default state
@@ -100,5 +127,5 @@ public class GameManager : MonoBehaviour
 //Holds enum values for all possible scenes - used for inspector drop down menu
 enum GameStates
 {
-    Menu, Education, Simulation
+    Menu, Lobby, Education, Simulation
 }

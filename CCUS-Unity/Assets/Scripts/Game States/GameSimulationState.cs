@@ -26,15 +26,15 @@ using System;
 
 public class GameSimulationState : GameBaseState
 {
-    GameManager GM;
+    GameManager gm;
     SimulationDataScriptableObject simulationData;
 
     private float timeSinceYearUpdated = 0;
 
     public void Start()
     {
-        GM = GameManager.instance;
-        simulationData = GM.simData;
+        gm = GameManager.GM;
+        simulationData = gm.simData;
         Debug.Log(simulationData.year);
     }
     public override void EnterState()
@@ -42,8 +42,8 @@ public class GameSimulationState : GameBaseState
         Debug.Log("Entering Simulation State");
 
         //Sets active scene to scene found by build index (not great, but for current build it works)
-        if (EditorSceneManager.GetActiveScene().buildIndex != 1)
-            EditorSceneManager.LoadScene(1);
+        if (EditorSceneManager.GetActiveScene().name != "SimulationScene")
+            EditorSceneManager.LoadScene("SimulationScene");
     }
 
     public override void UpdateState()
