@@ -10,8 +10,8 @@ public class TemperatureHandler : MonoBehaviour
     float currentPPM = 417.5f;
 
     [Header("Set in Inspector or Dynamically")]
-    [SerializeField] private float _maxFillAmount = 100f;
-    [SerializeField] private float _minFillAmount = 0f;
+    //[SerializeField] private float _maxFillAmount = 100f;
+    //[SerializeField] private float _minFillAmount = 0f;
 
     [Header("Average Recorded Temperature in Current Year")]
     [SerializeField] private float _avgTemperature = 19.111f;

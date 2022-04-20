@@ -68,6 +68,7 @@ public class InformationUIHandler : MonoBehaviour
             if (decreasing)
                 simulationData.percentageCCUS -= 1;
             timeSinceIncrease = 0f;
+            simulationData.percentageCCUS = Mathf.Clamp(simulationData.percentageCCUS, 0, 100);
         }
     }
 
