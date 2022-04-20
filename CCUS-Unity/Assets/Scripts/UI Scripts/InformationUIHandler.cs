@@ -32,6 +32,9 @@ public class InformationUIHandler : MonoBehaviour
 
     private SimulationDataScriptableObject simulationData;
     private GameManager gm;
+    private float timeSinceIncrease = 0f;
+    private bool increasing = false;
+    private bool decreasing = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,9 +57,18 @@ public class InformationUIHandler : MonoBehaviour
         _currentPercentageText.text = "Current CCUS Percentage: " + simulationData.percentageCCUS + "%";
         _currentPPM_Text.text = "Current CO2 PPM: " + roundToTwoDecimals(simulationData.currentPPM) + "PPM";
         _carbonNeutralCCUS_Text.text = "CCUS Percentage Needed to be Carbon Neutral: " + simulationData.percentageForNeutral + "%";
-        currentMoney.text = "Current Money: " + roundToTwoDecimals(simulationData.currentMoney);
-        annualSpending.text = "Annual Spending: " + roundToTwoDecimals(simulationData.annualCostOfCCUS);
-        annualBudget.text = "Annual Budget: " + roundToTwoDecimals(simulationData.annualBudget);
+        currentMoney.text = "Current Money: " + roundToTwoDecimals(simulationData.currentMoney) + " Trillion";
+        annualSpending.text = "Annual Spending: " + roundToTwoDecimals(simulationData.annualCostOfCCUS) + " Trillion";
+        annualBudget.text = "Annual Budget: " + roundToTwoDecimals(simulationData.annualBudget) + " Trillion";
+        timeSinceIncrease += Time.deltaTime;
+        if (timeSinceIncrease > 0.1f)
+        {
+            if (increasing)
+                simulationData.percentageCCUS += 1;
+            if (decreasing)
+                simulationData.percentageCCUS -= 1;
+            timeSinceIncrease = 0f;
+        }
     }
 
     private float roundToTwoDecimals(float unrounded)
@@ -68,6 +80,16 @@ public class InformationUIHandler : MonoBehaviour
     public void updatePercentage()
     {
         simulationData.percentageCCUS = (int) Mathf.Round(_sliderCCUS.GetComponent<Slider>().value * 100f);
+    }
+
+    public void IncreaseToggle()
+    {
+        increasing = !increasing;
+    }
+
+    public void DecreaseToggle()
+    {
+        decreasing = !decreasing;
     }
 
 }
