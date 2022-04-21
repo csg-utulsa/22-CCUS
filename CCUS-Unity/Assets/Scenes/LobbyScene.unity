@@ -6328,7 +6328,7 @@ PrefabInstance:
     - target: {fileID: 2232528274784236819, guid: c203db4113dce314b99c2a6765d2d325, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 32900000, guid: e9244c32c78f7e94caec8d480f37d98f, type: 3}
     - target: {fileID: 2232528275486896900, guid: c203db4113dce314b99c2a6765d2d325, type: 3}
       propertyPath: m_Name
       value: VideoPlayer-CCUSCosts
@@ -7054,8 +7054,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5.5
-  m_Range: 10
+  m_Intensity: 6.64
+  m_Range: 10.77
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

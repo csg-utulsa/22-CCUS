@@ -21,6 +21,7 @@ public class PhysicalButtonScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            gm.resetSimData();
             gm.ChangeState("Simulation");
         }
     }

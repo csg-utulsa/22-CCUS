@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseMovement : MonoBehaviour
 {
 
-    GameManager gm;
+    /*GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +30,5 @@ public class PauseMovement : MonoBehaviour
         {
             transform.GetComponent<CharacterController>().enabled = true;
         }
-    }
+    }*/
 }

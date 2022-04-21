@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Initialize simulation data with default values
-        simData = SimulationDataScriptableObject.CreateInstance<SimulationDataScriptableObject>();
         resetSimData();
 
         //Dictionary to store game states. Lets the code reference the script by just calling a string value
@@ -113,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void resetSimData()
     {
         Debug.Log("Resetting sim data with default values...");
+        simData = SimulationDataScriptableObject.CreateInstance<SimulationDataScriptableObject>();
     }
 
     //Passes in a key to the dictionary of different game states
