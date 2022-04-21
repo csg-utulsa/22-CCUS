@@ -93,4 +93,19 @@ public class InformationUIHandler : MonoBehaviour
         decreasing = !decreasing;
     }
 
+    public void SlowSpeedWorld()
+    {
+        simulationData.secondsPerYear = 2f;
+    }
+
+    public void NormalSpeedWorld()
+    {
+        simulationData.secondsPerYear = 1f;
+    }
+
+    public void FastSpeedWorld()
+    {
+        simulationData.secondsPerYear = 0.4f;
+    }
 }
+

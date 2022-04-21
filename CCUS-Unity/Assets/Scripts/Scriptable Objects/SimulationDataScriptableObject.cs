@@ -10,7 +10,7 @@ public class SimulationDataScriptableObject : ScriptableObject
     [Header("Set in Inspector")]
     public int startingPercentageCCUS = 0;
     public int defaultYear = 2022;
-    public int secondsPerYear = 1;
+    public float secondsPerYear = 1f;
 
     [Header("Set in Inspector (in trillions)")]
     public float startingMoney = 10f;
@@ -40,6 +40,8 @@ public class SimulationDataScriptableObject : ScriptableObject
     public float costForCarbonNeutral;
     public float costOfMaxCCUS;
     public float annualCostOfCCUS;
+    public float currentTemperature;
+    public bool environmentSaved;
 
     public SimulationDataScriptableObject()
     {
@@ -55,5 +57,7 @@ public class SimulationDataScriptableObject : ScriptableObject
         costForCarbonNeutral = 0f;
         costOfMaxCCUS = 0f;
         annualCostOfCCUS = 0f;
+        currentTemperature = 91.0f;
+        environmentSaved = true;
     }
 }

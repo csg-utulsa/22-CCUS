@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     GameLobbyState LobbyState;
     GameEducationState EducationState;
     GameSimulationState SimulationState;
+    GameResultsState ResultsState;
 
 
     void Awake()
@@ -82,7 +83,8 @@ public class GameManager : MonoBehaviour
             {"Menu", this.GetComponent<GameMenuState>()},
             {"Lobby", this.GetComponent<GameLobbyState>()},
             {"Simulation", this.GetComponent<GameSimulationState>()},
-            {"Education", this.GetComponent<GameEducationState>()}
+            {"Education", this.GetComponent<GameEducationState>()},
+            {"Results", this.GetComponent<GameResultsState>() }
         };
 
         //Sets the current state to whatever is set in the Inspector as default state
@@ -127,5 +129,5 @@ public class GameManager : MonoBehaviour
 //Holds enum values for all possible scenes - used for inspector drop down menu
 enum GameStates
 {
-    Menu, Lobby, Education, Simulation
+    Menu, Lobby, Education, Simulation, Results
 }

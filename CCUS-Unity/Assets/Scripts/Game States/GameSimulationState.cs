@@ -2,8 +2,8 @@
  * Created by: Coleton Wheeler
  * Created on: 3/1/22
  * 
- * Last edited by: Coleton Wheeler
- * Last edited on: 3/31/22
+ * Last edited by: Ben Reyes
+ * Last edited on: 4/21/22 <- added wildfire value
  * 
  * Description: Class to handle the game during the Simulation State
  *****/
@@ -11,6 +11,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+
 
 /* ------------ CCUS FORMULAS USED ------------- */
 //[A] Calculating the anual increase of air CCUS -> AnnualIncrease = (natural emissions + industry emissions) - ((ppm value of 100% CCUS / 100) * current percentage CCUS) - (natural carbon sink)
@@ -66,6 +67,14 @@ public class GameSimulationState : GameBaseState
 
         UpdateCarbonInformation();
         UpdateMoneyInformation();
+
+        // Check: Should Game End?
+        // IF yes (at year 2222 ? ) switch to result screen!
+        if(simulationData.year > 2222)
+        {
+            // switch scenes to the result page!
+            gm.ChangeState("Results");
+        }
     }
 
     
@@ -83,6 +92,17 @@ public class GameSimulationState : GameBaseState
         simulationData.netZeroPPM = (simulationData.naturalCarbonEmissions + simulationData.industryCarbonEmissions) - simulationData.naturalCarbonSink;
         //Calculates the necessary percentage of CCUS for net neutral CO2 emissions ---- Formula [C]
         simulationData.percentageForNeutral = (int)((simulationData.netZeroPPM / simulationData.hundredPercentCCUS_PPM) * 100);
+
+        float fogThickness = (simulationData.currentPPM - simulationData.startingPPM) / 327.5f;
+        if (fogThickness < 0 )
+        {
+            fogThickness = 0;
+        }
+        // Create fog and orange color for "Wildfire" in script < MAX PPM is around 745 PPM. MIN is Starting ppm - 417.5
+        RenderSettings.fogColor = Color.red;
+
+        RenderSettings.fogDensity = 0.08f * fogThickness;
+
     }
 
     private void UpdateMoneyInformation()

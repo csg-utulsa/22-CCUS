@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PhysicalButtonScript : MonoBehaviour
 {
-    public UnityEvent ButtonTriggerEvent;
+    GameManager gm;
+
+    private void Start ()
+    {
+        gm = GameManager.GM;
+        if (gm==null) {
+            Debug.LogWarning("Game Manager was not found in LobbyScene");
+        } 
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerEvent"))
+        if (other.CompareTag("Player"))
         {
-            // do an event
-            Debug.Log("Button Event has been triggered!");
-            ButtonTriggerEvent.Invoke();
-            
-            
+            gm.ChangeState("Simulation");
         }
     }
 }

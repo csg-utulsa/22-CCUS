@@ -38,7 +38,7 @@ public class BarHandler : MonoBehaviour
     [SerializeField] private static float HighestTemp = 94.6f;
 
     [Header("Do Not Touch, dynamic temperature")]
-    [SerializeField] private float CurrentTemp;
+    [SerializeField] private float CurrentTemp = 0f;
 
     public Text curTempText;
 
@@ -111,6 +111,11 @@ public class BarHandler : MonoBehaviour
         float percentageTempFill = ((CurrentTemp - LowestTemp) / (HighestTemp - LowestTemp)) * 100;
         setFill(percentageTempFill);
 
-        curTempText.text = "Current Temp: ";// + ((float)Mathf.Round(CurrentTemp * 100f) / 100f).ToString();
+        curTempText.text = "Current Temp: " + ((float)Mathf.Round(CurrentTemp * 100f) / 100f);
+        gm.simData.currentTemperature = ((float)Mathf.Round(CurrentTemp * 100f) / 100f);
+        if(CurrentTemp > HighestTemp)
+        {
+            gm.simData.environmentSaved = false;
+        }
     }
 }
