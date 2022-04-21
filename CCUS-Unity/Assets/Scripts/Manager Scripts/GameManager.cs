@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     private Dictionary<string, GameBaseState> gameStatesDictionary;
+    public bool isPaused = false;
 
     [HideInInspector]
     public SimulationDataScriptableObject simData;
@@ -100,6 +101,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (isPaused)
+            return;
+
         //Runs the UpdateState() function in the currently set state script
         if (currentState)
             currentState.UpdateState();
