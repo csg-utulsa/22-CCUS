@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.7703147, g: 0.77337736, b: 0.75401694, a: 1}
+  m_IndirectSpecularColor: {r: 0.77028745, g: 0.7734031, b: 0.7540793, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -1909,6 +1909,7 @@ GameObject:
   - component: {fileID: 1992229662}
   - component: {fileID: 1992229661}
   - component: {fileID: 1992229660}
+  - component: {fileID: 1992229663}
   m_Layer: 5
   m_Name: ToggleDOWNCCUS
   m_TagString: Untagged
@@ -1979,19 +1980,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1992229661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 209084665}
-        m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
-        m_MethodName: DecreaseToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1992229661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,6 +2019,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992229658}
   m_CullTransparentMesh: 1
+--- !u!114 &1992229663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992229658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 209084665}
+          m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
+          m_MethodName: DecreaseToggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 209084665}
+          m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
+          m_MethodName: DecreaseToggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2026029070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2318,7 @@ GameObject:
   - component: {fileID: 2133834699}
   - component: {fileID: 2133834698}
   - component: {fileID: 2133834697}
+  - component: {fileID: 2133834700}
   m_Layer: 5
   m_Name: ToggleUPCCUS
   m_TagString: Untagged
@@ -2354,19 +2389,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2133834698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 209084665}
-        m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
-        m_MethodName: IncreaseToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2133834698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,6 +2428,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133834695}
   m_CullTransparentMesh: 1
+--- !u!114 &2133834700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133834695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 209084665}
+          m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
+          m_MethodName: IncreaseToggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 209084665}
+          m_TargetAssemblyTypeName: InformationUIHandler, Assembly-CSharp
+          m_MethodName: IncreaseToggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &74396116970789299
 Transform:
   m_ObjectHideFlags: 0
@@ -3274,6 +3342,7 @@ MonoBehaviour:
   Notes: 'For functionality, please name the scenes in the build after the game state
     name. Ex: MenuState -> MenuScene'
   StartingGameState: 0
+  isPaused: 0
   simData: {fileID: 0}
 --- !u!224 &5012670667507214657
 RectTransform:

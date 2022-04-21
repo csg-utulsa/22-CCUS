@@ -15,6 +15,8 @@ public class PauseMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm = null)
+            gm = GameManager.GM;
         if (transform.GetComponent<CharacterController>() == null)
         {
             Debug.LogWarning("Character Controller Component Not Found!");
@@ -22,11 +24,11 @@ public class PauseMovement : MonoBehaviour
         }
         if (gm.isPaused)
         {
-            transform.GetComponent<CharacterController>().enabled = true;
+            transform.GetComponent<CharacterController>().enabled = false;
         }
         else
         {
-            transform.GetComponent<CharacterController>().enabled = false;
+            transform.GetComponent<CharacterController>().enabled = true;
         }
     }
 }

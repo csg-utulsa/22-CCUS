@@ -14,7 +14,7 @@ public class SimulationDataScriptableObject : ScriptableObject
 
     [Header("Set in Inspector (in trillions)")]
     public float startingMoney = 10f;
-    public float annualBudget = 0.5f;
+    public float annualBudget = 1f;
 
     [Header("Set in Inspector (in dollars)")]
     public float costPerTonCarbonRemoved = 230f;
