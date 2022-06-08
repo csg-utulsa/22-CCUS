@@ -3442,14 +3442,14 @@ MonoBehaviour:
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_ControllerNode: 4
-  m_SelectUsage: 3
+  m_SelectUsage: 7
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
-  m_RotateAnchorLeft: 0
-  m_RotateAnchorRight: 4
-  m_MoveObjectIn: 8
-  m_MoveObjectOut: 6
+  m_RotateAnchorLeft: 16
+  m_RotateAnchorRight: 17
+  m_MoveObjectIn: 18
+  m_MoveObjectOut: 19
   m_PoseProvider: {fileID: 0}
 --- !u!1001 &785823546
 PrefabInstance:
@@ -5962,14 +5962,14 @@ MonoBehaviour:
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_ControllerNode: 5
-  m_SelectUsage: 3
+  m_SelectUsage: 7
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
-  m_RotateAnchorLeft: 4
-  m_RotateAnchorRight: 0
-  m_MoveObjectIn: 8
-  m_MoveObjectOut: 6
+  m_RotateAnchorLeft: 16
+  m_RotateAnchorRight: 21
+  m_MoveObjectIn: 18
+  m_MoveObjectOut: 19
   m_PoseProvider: {fileID: 0}
 --- !u!4 &1386394378 stripped
 Transform:
@@ -8817,6 +8817,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5662571439721771391, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_SelectUsage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439721771391, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_MoveObjectIn
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439721771391, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_MoveObjectOut
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439721771391, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_RotateAnchorLeft
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439721771391, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_RotateAnchorRight
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 5662571439913075336, guid: 325493c177016424dade382b4ba525c2, type: 3}
       propertyPath: m_InteractionManager
       value: 
@@ -8840,6 +8860,26 @@ PrefabInstance:
     - target: {fileID: 5662571439913075340, guid: 325493c177016424dade382b4ba525c2, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439913075351, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_SelectUsage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439913075351, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_MoveObjectIn
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439913075351, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_MoveObjectOut
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439913075351, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_RotateAnchorLeft
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662571439913075351, guid: 325493c177016424dade382b4ba525c2, type: 3}
+      propertyPath: m_RotateAnchorRight
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5662571440756041985, guid: 325493c177016424dade382b4ba525c2, type: 3}
       propertyPath: m_LocalPosition.y
