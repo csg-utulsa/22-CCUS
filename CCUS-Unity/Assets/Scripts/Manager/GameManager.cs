@@ -90,12 +90,13 @@ public class GameManager : MonoBehaviour
         //Sets the current state to whatever is set in the Inspector as default state
         if (!gameStatesDictionary.TryGetValue(StartingGameState.ToString(), out currentState))
         {
-            //If enum does not match a dictionary key, set to default MenuState
-            currentState = MenuState;
+            //If enum does not match a dictionary key, set to default null. This remains on same scene.
+            currentState = null;
         }
 
         //Runs EnterState() of the newly set state script
-        currentState.EnterState();
+        if (currentState)
+            currentState.EnterState();
     }
 
     void Update()
@@ -133,5 +134,5 @@ public class GameManager : MonoBehaviour
 //Holds enum values for all possible scenes - used for inspector drop down menu
 enum GameStates
 {
-    Menu, Lobby, Education, Simulation, Results
+    Menu, Lobby, Education, Simulation, Results, Current
 }
