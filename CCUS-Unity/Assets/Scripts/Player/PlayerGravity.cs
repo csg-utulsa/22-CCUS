@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class PlayerGravity : MonoBehaviour
 {
+    public bool gravityEnabled = true;
+    
+    [Space(10)]
 
-    CharacterController controller;
     public float gravity = 1f;
     public float maxVelocity = 10f;
+    public float velocityScaling = 2f;
+    
     private Vector3 velocity = Vector3.zero;
-    // Start is called before the first frame update
+    CharacterController controller;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
-        if (!controller.isGrounded)
+        if (!controller.isGrounded && gravityEnabled)
         {
-            velocity.y -= gravity;
+            velocity.y -= gravity * Time.deltaTime * velocityScaling;
             velocity.y = Mathf.Clamp(velocity.y, (-1) * maxVelocity, 0);
         } 
         else 
         {
             velocity = Vector3.zero;
         }
-        Debug.Log(velocity.y);
         controller.Move(velocity * Time.deltaTime);
     }
 }
