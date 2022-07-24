@@ -5,6 +5,7 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+<<<<<<< HEAD
     RecentlyUsedSceneGuid-0:
       value: 5401005057535b095b0f5a7511225c4415151b2f7e7e74687e2b1e65b5b6606e
       flags: 0
@@ -35,6 +36,8 @@ EditorUserSettings:
     RecentlyUsedSceneGuid-9:
       value: 5b520d5f51570f5f5a58557445720744134f1d797c2d71687a7c1e61b4b03069
       flags: 0
+=======
+>>>>>>> parent of dbb56b42 (Review)
     RecentlyUsedScenePath-0:
       value: 22424703114646680e0b0227036c7a140314193e252728032e2c1336acf53a31f6fe
       flags: 0
@@ -73,13 +76,9 @@ EditorUserSettings:
   m_VCDebugCmd: 0
   m_VCDebugOut: 0
   m_SemanticMergeMode: 2
-  m_DesiredImportWorkerCount: 6
-  m_StandbyImportWorkerCount: 2
-  m_IdleImportWorkerShutdownDelay: 60000
   m_VCShowFailedCheckout: 1
   m_VCOverwriteFailedCheckoutAssets: 1
   m_VCProjectOverlayIcons: 1
   m_VCHierarchyOverlayIcons: 1
   m_VCOtherOverlayIcons: 1
   m_VCAllowAsyncUpdate: 1
-  m_ArtifactGarbageCollection: 1
