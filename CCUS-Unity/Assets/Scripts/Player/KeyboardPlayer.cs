@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 /**********
  * Created by: Coleton Wheeler
@@ -14,11 +15,13 @@ using UnityEngine;
 
 public class KeyboardPlayer : MonoBehaviour
 {
-    [SerializeField] private Camera PlayerCamera;
-    public bool lockCursor = true;
-    public float mouseSensitivity = 3.5f;
+    private Input playerInput;
 
-    private float cameraPitch;
+    //Cursor and camera variables
+    [SerializeField] private Camera PlayerCamera;
+    public float mouseSensitivity = 3.5f;
+    private float rotationY;
+    private bool lockCursor = true;
 
     void Start()
     {
@@ -30,8 +33,10 @@ public class KeyboardPlayer : MonoBehaviour
     {
         //Runs updates to check mouse position and translate that into camera movement
         MouseUpdate();
+        MovementUpdate();
     }
 
+    #region Mouse Updates
     private void MouseUpdate()
     {
         if (lockCursor)
@@ -54,6 +59,26 @@ public class KeyboardPlayer : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
+        ////Move camera based on cursor movement
+        //rotationY += Input.GetAxis("Mouse Y") * mouseSensitivity;
+        //rotationY = Mathf.Clamp(rotationY, -70f, 70f);
+        //PlayerCamera.transform.localEulerAngles = new Vector3(-rotationY, PlayerCamera.transform.localEulerAngles.y, 0);
+        //transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0));
+
+
+    }
+
+    public void MoveCamera(CallbackContext context)
+    {
+        Debug.Log(context);
+    }
+
+    #endregion
+
+    private void MovementUpdate()
+    {
+
     }
 
     public void ToggleCursor()

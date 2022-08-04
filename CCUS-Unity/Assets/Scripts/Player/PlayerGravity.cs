@@ -28,11 +28,11 @@ public class PlayerGravity : MonoBehaviour
         {
             velocity.y -= gravity * Time.deltaTime * velocityScaling;
             velocity.y = Mathf.Clamp(velocity.y, (-1) * maxVelocity, 0);
+            controller.Move(velocity * Time.deltaTime);
         } 
         else 
         {
             velocity = Vector3.zero;
         }
-        controller.Move(velocity * Time.deltaTime);
     }
 }

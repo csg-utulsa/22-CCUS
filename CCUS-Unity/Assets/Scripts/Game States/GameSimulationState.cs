@@ -44,7 +44,9 @@ public class GameSimulationState : GameBaseState
 
         //Sets active scene to scene found by build name (not great, but for current build it works)
         if (SceneManager.GetActiveScene().name != "SimulationScene")
+        {
             SceneManager.LoadScene("SimulationScene");
+        }
     }
 
     public override void UpdateState()
