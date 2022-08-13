@@ -48,8 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db9dff0713c3b24c94b3a675c06fbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 630117363282550346}
+  controller: {fileID: -7824471170098694854}
   PlayerCamera: {fileID: 2356514083812234564}
-  mouseSensitivity: 3.5
+  mouseSensitivity: 35
+  enableCameraRotate: 1
+  speed: 5
 --- !u!143 &-7824471170098694854
 CharacterController:
   m_ObjectHideFlags: 0
@@ -95,28 +99,12 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f90321b3-9bfe-46e2-b036-192106a9e7da
-    m_ActionName: Player/Jump[/Keyboard/space]
+    m_ActionId: 94e92620-2ab1-4937-9591-5da8be46a6bd
+    m_ActionName: Player/Horizontal[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 6987a4df-ca8a-4ca5-b4fe-cceda5953022
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2356514082165358684}
-        m_TargetAssemblyTypeName: KeyboardPlayer, Assembly-CSharp
-        m_MethodName: MoveCamera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 913d72d2-8828-4df7-aab2-f66ea54674ca
-    m_ActionName: Player/MousePosition[/Mouse/position]
+    m_ActionId: 52a18cc8-687c-4b12-81f4-f97f29710a26
+    m_ActionName: Player/Vertical[/Keyboard/s,/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -129,7 +117,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2356514082165358686}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cbf19210b75cc47b1b0692cae7516d, type: 3}
   m_Name: 
