@@ -3,7 +3,7 @@
  * Created on: 3/1/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 4/14/22
+ * Last edited on: 8/22/22
  * 
  * Description: Handles all scenes and interactions between them.
  * Handles the GameStates, running Update for each script template through here.
@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,14 +30,13 @@ public class GameManager : MonoBehaviour
         if (gm == null)
         {
             gm = this; //set gm to this gm of the game object
-            Debug.Log(gm);
+            Debug.Log(gm + " Loaded");
         }
         else //else if gm is not null a Game Manager must already exsist
         {
             Destroy(this.gameObject); //In this case you need to delete this gm
             Debug.Log("Game Manager exists. Deleting...");
         }
-        Debug.Log(gm);
     }//end CheckGameManagerIsInScene()
     #endregion
 
@@ -82,10 +82,6 @@ public class GameManager : MonoBehaviour
         DetectInputMode();
         CheckGameManagerIsInScene();
         systems = transform.parent.gameObject;
-        pm = PlayerManager.PM;
-
-
-        pm.InstantiatePlayer(InputMode);
     }
     void Start()
     {
@@ -147,9 +143,9 @@ public class GameManager : MonoBehaviour
 
     void DetectInputMode()
     {
-        if (false)
+        if (IsVRAttatched())
         {
-
+            
         }
         else
         {
@@ -161,6 +157,20 @@ public class GameManager : MonoBehaviour
             InputMode = inputOverride;
         }
 
+    }
+
+    bool IsVRAttatched()
+    {
+        List<XRDisplaySubsystem> displaySubsystems = new List<XRDisplaySubsystem>();
+        SubsystemManager.GetInstances<XRDisplaySubsystem>(displaySubsystems);
+        foreach (var subsystem in displaySubsystems)
+        {
+            if(subsystem.running)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

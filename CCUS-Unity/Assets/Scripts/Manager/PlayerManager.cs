@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Created on: 7/17/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 8/4/22
+ * Last edited on: 8/22/22
  * 
  * Description: Handles all logic according to the player specifically. I.E. input handling
  *****/
@@ -29,14 +29,13 @@ public class PlayerManager : MonoBehaviour
         if (pm == null)
         {
             pm = this; //set pm to this pm of the game object
-            Debug.Log(pm);
+            Debug.Log(pm + " Loaded");
         }
         else //else if pm is not null a Player Manager must already exsist
         {
             Destroy(this.gameObject); //In this case you need to delete this pm
             Debug.Log("Player Manager exists. Deleting...");
         }
-        Debug.Log(pm);
     }
     #endregion
 
@@ -66,6 +65,8 @@ public class PlayerManager : MonoBehaviour
     {
         CheckPlayerManagerIsInScene();
         gm = GameManager.GM;
+        Debug.Log("Input Mode: " + gm.InputMode + " (PlayerManager)");
+        InstantiatePlayer(gm.InputMode);
     }
 
     void Update()
