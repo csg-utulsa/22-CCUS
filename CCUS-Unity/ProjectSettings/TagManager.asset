@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TriggerEvent
   - Key
+  - Manager
   layers:
   - Default
   - TransparentFX

@@ -49,12 +49,21 @@ public class GameManager : MonoBehaviour
     [Header("Set in Inspector")]
     [SerializeField] GameStates StartingGameState; 
     public static GameManager instance { get; private set; }
-
     private Dictionary<string, GameBaseState> gameStatesDictionary;
     public bool isPaused = false;
+    [HideInInspector] public SimulationDataScriptableObject simData;
 
-    [HideInInspector]
-    public SimulationDataScriptableObject simData;
+    [Space(10)]
+
+    //Input handling and initialization variables
+    [Header("Input type variables")]
+    public bool OverrideInputMethod = false;
+    [SerializeField] InputType inputOverride;
+    public InputType InputMode { get; private set; }
+
+    //Other managers
+    GameObject systems;
+    PlayerManager pm;
 
     /* Make a new state for each game state/scene
      * 
@@ -70,7 +79,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        DetectInputMode();
         CheckGameManagerIsInScene();
+        systems = transform.parent.gameObject;
+        pm = PlayerManager.PM;
+
+
+        pm.InstantiatePlayer(InputMode);
     }
     void Start()
     {
@@ -129,10 +144,34 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("State not found");
         }
     }
+
+    void DetectInputMode()
+    {
+        if (false)
+        {
+
+        }
+        else
+        {
+            InputMode = InputType.Keyboard;
+        }
+
+        if (OverrideInputMethod)
+        {
+            InputMode = inputOverride;
+        }
+
+    }
 }
 
 //Holds enum values for all possible scenes - used for inspector drop down menu
 enum GameStates
 {
     Menu, Lobby, Education, Simulation, Results, Current
+}
+
+//Enum to determine input type
+public enum InputType
+{
+    Keyboard, VR
 }

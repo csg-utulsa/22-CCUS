@@ -23,7 +23,7 @@ public class KeyboardPlayer : MonoBehaviour
     //Cursor and camera variables
     [Header("Camera and Cursor variables")]
     [SerializeField] private Camera PlayerCamera;
-    public float mouseSensitivity = 35f;
+    [Range(0f, 100f)] public float mouseSensitivity = 35f;
     private float rotationX = 0f;
     public bool enableCameraRotate = false;
 

@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903981960081492398}
-  - component: {fileID: 1499368635739390120}
+  - component: {fileID: -8545582613120137238}
   - component: {fileID: 6584198134441699509}
   - component: {fileID: 6584198134441699510}
   - component: {fileID: 6584198134441699511}
@@ -127,7 +127,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1499368635739390120
+--- !u!114 &-8545582613120137238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +144,8 @@ MonoBehaviour:
   StartingGameState: 5
   isPaused: 0
   simData: {fileID: 0}
+  OverrideInputMethod: 1
+  inputOverride: 0
 --- !u!114 &6584198134441699509
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,11 +41,7 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
 
-    //Input handling and initialization variables
-    [Space(10)]
-    public bool OverrideInputMethod = false;
-    [SerializeField] InputType inputOverride;
-    private InputType inputMode;
+    //Gameobjects
     [Space(10)]
     public GameObject VR_Prefab;
     public GameObject Keyboard_Prefab;
@@ -55,6 +51,11 @@ public class PlayerManager : MonoBehaviour
     //Player variables
     private Vector3 respawnLocation = Vector3.zero;
 
+    //Input mode
+    private InputType localInputMode;
+
+    //Singletons
+    GameManager gm;
 
     void Start()
     {
@@ -63,14 +64,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        //Player manager singleton initliazer
         CheckPlayerManagerIsInScene();
-
-        //Checks for VR input and sets InputMode
-        DetectInputMode();
-
-        //Instantiates player
-        InstantiatePlayer();
+        gm = GameManager.GM;
     }
 
     void Update()
@@ -93,7 +88,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Player Instantiation
 
-    void InstantiatePlayer()
+    public void InstantiatePlayer(InputType inputMode)
     {
         //Instantiate player model
         if (inputMode == InputType.Keyboard)
@@ -120,32 +115,9 @@ public class PlayerManager : MonoBehaviour
     //When a new scene loads, instantiate the player model again.
     void ChangedActiveScene(Scene current, Scene next)
     {
-        InstantiatePlayer();
+        InstantiatePlayer(localInputMode);
     }
 
     #endregion
 
-
-    #region Input Handling
-
-    //Detects input mode and instantiates proper player model
-    void DetectInputMode()
-    {
-        //inputModeString = GM.somehow get mode from auto detection
-
-        //Overwrite this with inspector option
-        if (OverrideInputMethod)
-        {
-            inputMode = inputOverride;
-        }
-    }
-
-    #endregion
-
-}
-
-//Enum to determine input type
-enum InputType
-{
-    Keyboard, VR
 }
