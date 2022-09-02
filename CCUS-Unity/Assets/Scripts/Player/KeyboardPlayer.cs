@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 /**********
  * Created by: Coleton Wheeler
  * Created on: 7/17/22
  * 
- * Last edited by: 
- * Last edited on: 
+ * Last edited by: Coleton Wheeler
+ * Last edited on: 8/31/22
  * 
  * Description: Will manage all player input and controls when switched to keyboard and mouse mode.
  *****/
@@ -34,6 +35,13 @@ public class KeyboardPlayer : MonoBehaviour
     public float speed = 15f;
     private InputAction horizontal;
     private InputAction vertical;
+
+    [Space(10)]
+
+    //Menu variables
+    [Header("UI Variables")]
+    [SerializeField] private GameObject CCUSMenu;
+    [SerializeField] private GameObject PauseMenu;
 
     void Start()
     {
@@ -115,6 +123,7 @@ public class KeyboardPlayer : MonoBehaviour
     #endregion
 
     #region CameraLock methods
+    //Unlocks the camera for UI navigation
     public void UnlockCameraRotate()
     {
         enableCameraRotate = false;
@@ -122,6 +131,7 @@ public class KeyboardPlayer : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    //Locks the camera for the FPS controller
     public void LockCameraRotate()
     {
         enableCameraRotate = true;
@@ -130,5 +140,67 @@ public class KeyboardPlayer : MonoBehaviour
     }
 
     #endregion
+
+    //Open menu
+    public void ToggleCCUSMenu(CallbackContext callbackContext)
+    {
+        //Check if the callback context is on performed
+        if (callbackContext.phase != InputActionPhase.Performed)
+        {
+            return;
+        }
+
+        if (CCUSMenu.activeSelf == false)
+        {
+            //Check if pause menu is open
+            if (PauseMenu.activeSelf == true)
+            {
+                LockCameraRotate();
+
+                //If pause menu fleshed out, will need to save adjustments before closing
+
+                PauseMenu.SetActive(false);
+            }
+
+            CCUSMenu.SetActive(true);
+            UnlockCameraRotate();
+        } 
+        else if (CCUSMenu.activeSelf == true)
+        {
+            CCUSMenu.SetActive(false);
+            LockCameraRotate();
+        }
+
+    }
+
+    public void TogglePauseMenu(CallbackContext callbackContext)
+    {
+        //Check if the callback context is on performed
+        if (callbackContext.phase != InputActionPhase.Performed)
+        {
+            return;
+        }
+
+        if (PauseMenu.activeSelf == false)
+        {
+
+            //Check if CCUS menu is open
+            if (CCUSMenu.activeSelf == true)
+            {
+                LockCameraRotate();
+                CCUSMenu.SetActive(false);
+            }
+
+
+            PauseMenu.SetActive(true);
+            UnlockCameraRotate();
+        }
+        else if (PauseMenu.activeSelf == true)
+        {
+            PauseMenu.SetActive(false);
+            LockCameraRotate();
+        }
+
+    }
 
 }
