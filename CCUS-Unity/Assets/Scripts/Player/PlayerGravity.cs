@@ -22,7 +22,7 @@ public class PlayerGravity : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (!controller.isGrounded && gravityEnabled)
         {

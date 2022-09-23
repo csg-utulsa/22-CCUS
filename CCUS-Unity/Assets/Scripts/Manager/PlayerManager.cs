@@ -48,7 +48,11 @@ public class PlayerManager : MonoBehaviour
 
 
     //Player variables
-    private Vector3 respawnLocation = Vector3.zero;
+    private Vector3 respawnLocation;
+    private bool respawnHasBeenSet = false; //Variable to detect if a respawn has been set. Since Vector3 defaults as Vector3.zero when uninstantiated,
+                                            //I would like to keep track of when there is no spawn point in the world
+    [HideInInspector] public float playerHeight;
+    public float defaultPlayerHeight = 2f; //Sets to 2 as default. Eventually would want to use VR to detect the users height
 
     //Input mode
     private InputType localInputMode;
@@ -59,30 +63,33 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;
+        RespawnPlayer();
     }
 
     private void Awake()
     {
         CheckPlayerManagerIsInScene();
         gm = GameManager.GM;
+        playerHeight = defaultPlayerHeight;
         Debug.Log("Input Mode: " + gm.InputMode + " (PlayerManager)");
         InstantiatePlayer(gm.InputMode);
-    }
-
-    void Update()
-    {
-
     }
 
     //Allows other scripts to change the respawn location of the player
     public void SetPlayerRespawn(Vector3 newSpawn)
     {
+        respawnHasBeenSet = true;
         respawnLocation = newSpawn;
     }
 
     //Respawn the player to its' designated location
     public void RespawnPlayer()
     {
+        if (!respawnHasBeenSet)
+        {
+            Debug.LogWarning("No spawn point set in current scene! Add a spawn point or set if from a new script.");
+            respawnLocation = Vector3.zero;
+        }
         player.transform.position = respawnLocation;
     }
 
@@ -109,8 +116,6 @@ public class PlayerManager : MonoBehaviour
             player = Instantiate(Keyboard_Prefab);
             player.name = "Player (Keyboard)";
         }
-
-        RespawnPlayer();
     }
 
     //When a new scene loads, instantiate the player model again.

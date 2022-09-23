@@ -145,7 +145,7 @@ MonoBehaviour:
   isPaused: 0
   simData: {fileID: 0}
   OverrideInputMethod: 1
-  inputOverride: 1
+  inputOverride: 0
 --- !u!114 &6584198134441699509
 MonoBehaviour:
   m_ObjectHideFlags: 0

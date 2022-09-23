@@ -24,8 +24,8 @@ public class KeyboardPlayer : MonoBehaviour
     //Cursor and camera variables
     [Header("Camera and Cursor variables")]
     [SerializeField] private Camera PlayerCamera;
-    [Range(0f, 100f)] public float mouseSensitivity = 35f;
-    private float rotationX = 0f;
+    [Range(0f, 100f)] public float mouseSensitivity = 50f;
+    private float rotationY = 0f;
     public bool enableCameraRotate = false;
 
     [Space(10)]
@@ -89,16 +89,26 @@ public class KeyboardPlayer : MonoBehaviour
         }
 
         //Adjust mouse values by the sensitivity selected
-        mouseX *= mouseSensitivity;
-        mouseY *= mouseSensitivity;
+        mouseX *= mouseSensitivity / 10;
+        mouseY *= mouseSensitivity / 10;
+
+        rotationY += mouseY * Time.deltaTime;
+        rotationY = Mathf.Clamp(rotationY, -70f, 70f);
+        PlayerCamera.transform.localEulerAngles = new Vector3(-rotationY, PlayerCamera.transform.localEulerAngles.y, 0);
+        transform.Rotate(mouseX * Vector3.up * Time.deltaTime);
+
+
+
 
         //Rotates the horizontal direction
-        transform.Rotate(Vector3.up * mouseX * Time.deltaTime);
+        //PlayerCamera.gameObject.transform.Translate(Vector3.up * mouseX * Time.deltaTime);
+        //PlayerCamera.transform.Rotate(Vector3.up * mouseX * Time.deltaTime);
+        //PlayerCamera.gameObject.Rotate(Vector3.up * mouseX * Time.deltaTime);
 
         //Alters and clamps the vertical rotation
-        rotationX -= mouseY * Time.deltaTime;
+        /*rotationX -= mouseY * Time.deltaTime;
         rotationX = Mathf.Clamp(rotationX, -70f, 70f);
-        transform.localEulerAngles = new Vector3(rotationX, transform.localEulerAngles.y, 0);
+        transform.localEulerAngles = new Vector3(rotationX, transform.localEulerAngles.y, 0);*/
 
         
     }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    PlayerManager pm;
+
     void Awake()
     {
-        PlayerManager.PM.SetPlayerRespawn(transform.position);
-        PlayerManager.PM.RespawnPlayer();
+        pm = PlayerManager.PM;
+        pm.SetPlayerRespawn(transform.position + (Vector3.up * pm.playerHeight));
+        pm.RespawnPlayer();
     }
 }
