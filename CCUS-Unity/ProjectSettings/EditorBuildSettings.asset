@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SimulationScene.unity
     guid: 69584f8b5c7738d42bbe0a2b4145ff40
   - enabled: 1
-    path: Assets/Scenes/OldSimulationScene.unity
+    path: Assets/Scenes/Old/OldSimulationScene.unity
     guid: f43e03d0365d79e48a13c467e621bd9c
   - enabled: 1
     path: Assets/Scenes/ResultsScene.unity
