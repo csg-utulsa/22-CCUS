@@ -27,17 +27,11 @@ using UnityEngine.SceneManagement;
 
 public class GameSimulationState : GameBaseState
 {
-    GameManager gm;
+    GameManager gm = GameManager.GM;
     SimulationDataScriptableObject simulationData;
 
     private float timeSinceYearUpdated = 0;
 
-    public void Start()
-    {
-        gm = GameManager.GM;
-        if (gm.simData != null)
-            simulationData = gm.simData;
-    }
     public override void EnterState()
     {
         Debug.Log("Entering Simulation State");
@@ -47,6 +41,8 @@ public class GameSimulationState : GameBaseState
         {
             SceneManager.LoadScene("SimulationScene");
         }
+
+        simulationData = gm.simData;
     }
 
     public override void UpdateState()
@@ -75,7 +71,7 @@ public class GameSimulationState : GameBaseState
         if(simulationData.year > 2222)
         {
             // switch scenes to the result page!
-            gm.ChangeState("Results");
+            gm.ChangeState(GameState.Results);
         }
     }
 

@@ -21,14 +21,8 @@ public class HoloWatchManager : MonoBehaviour
         GM = GameManager.instance;
     }
 
-
     public void simulationSceneButton()
     {
-        GM.ChangeState("Simulation");
-    }
-
-    public void educationSceneButton()
-    {
-        GM.ChangeState("Education");
+        GM.ChangeState(GameState.Simulation);
     }
 }

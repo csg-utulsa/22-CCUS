@@ -6,7 +6,7 @@ public class SpawnPoint : MonoBehaviour
 {
     PlayerManager pm;
 
-    void Awake()
+    void Start()
     {
         pm = PlayerManager.PM;
         pm.SetPlayerRespawn(transform.position + (Vector3.up * pm.playerHeight));

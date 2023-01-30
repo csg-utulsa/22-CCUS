@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Created on: 7/17/22
  * 
  * Last edited by: Coleton Wheeler
- * Last edited on: 8/22/22
+ * Last edited on: 1/30/23
  * 
  * Description: Handles all logic according to the player specifically. I.E. input handling
  *****/
@@ -63,7 +63,6 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;
-        RespawnPlayer();
     }
 
     private void Awake()
@@ -72,7 +71,7 @@ public class PlayerManager : MonoBehaviour
         gm = GameManager.GM;
         playerHeight = defaultPlayerHeight;
         Debug.Log("Input Mode: " + gm.InputMode + " (PlayerManager)");
-        InstantiatePlayer(gm.InputMode);
+        InstantiatePlayer();
     }
 
     //Allows other scripts to change the respawn location of the player
@@ -85,19 +84,15 @@ public class PlayerManager : MonoBehaviour
     //Respawn the player to its' designated location
     public void RespawnPlayer()
     {
-        if (!respawnHasBeenSet)
-        {
-            Debug.LogWarning("No spawn point set in current scene! Add a spawn point or set if from a new script.");
-            respawnLocation = Vector3.zero;
-        }
         player.transform.position = respawnLocation;
     }
 
 
     #region Player Instantiation
 
-    public void InstantiatePlayer(InputType inputMode)
+    public void InstantiatePlayer()
     {
+        InputType inputMode = GameManager.GM.InputMode;
         //Instantiate player model
         if (inputMode == InputType.Keyboard)
         {
@@ -111,17 +106,19 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Unexpected result found. Instantiating Keyboard player as default");
-            inputMode = InputType.Keyboard;
-            player = Instantiate(Keyboard_Prefab);
-            player.name = "Player (Keyboard)";
+            Debug.LogWarning("Unexpected result found. Instantiating VR player as default");
+            inputMode = InputType.VR;
+            player = Instantiate(VR_Prefab);
+            player.name = "Player (VR)";
         }
+        SetPlayerRespawn(transform.position);
+        RespawnPlayer();
     }
 
     //When a new scene loads, instantiate the player model again.
     void ChangedActiveScene(Scene current, Scene next)
     {
-        InstantiatePlayer(localInputMode);
+        InstantiatePlayer();
     }
 
     #endregion

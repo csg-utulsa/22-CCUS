@@ -40,16 +40,9 @@ public class GameManager : MonoBehaviour
     }//end CheckGameManagerIsInScene()
     #endregion
 
-
-
-    [TextArea]
-    [Tooltip("Doesn't do anything. Just for basic information to project contributors")]
-    public string Notes = "For functionality, please name the scenes in the build after the game state name. Ex: MenuState -> MenuScene";
-
     [Header("Set in Inspector")]
-    [SerializeField] GameStates StartingGameState; 
+    [SerializeField] GameState StartingGameState; 
     public static GameManager instance { get; private set; }
-    private Dictionary<string, GameBaseState> gameStatesDictionary;
     public bool isPaused = false;
     [HideInInspector] public SimulationDataScriptableObject simData;
 
@@ -61,53 +54,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] InputType inputOverride;
     public InputType InputMode { get; private set; }
 
-    //Other managers
-    GameObject systems;
-    PlayerManager pm;
-
     /* Make a new state for each game state/scene
      * 
-     * Make sure to add accompanied Enum for the game state and add to dictionary
+     * Make sure to add accompanied Enum for the game state
      */
-    GameBaseState currentState;
-    GameMenuState MenuState;
-    GameLobbyState LobbyState;
-    GameEducationState EducationState;
-    GameSimulationState SimulationState;
-    GameResultsState ResultsState;
+    GameBaseState currentStateScript;
+    [SerializeField] GameMenuState MenuState;
+    [SerializeField] GameLobbyState LobbyState;
+    [SerializeField] GameSimulationState SimulationState;
+    [SerializeField] GameResultsState ResultsState;
 
 
     void Awake()
     {
         DetectInputMode();
         CheckGameManagerIsInScene();
-        systems = transform.parent.gameObject;
     }
     void Start()
     {
         //Initialize simulation data with default values
         resetSimData();
 
-        //Dictionary to store game states. Lets the code reference the script by just calling a string value
-        gameStatesDictionary = new Dictionary<string, GameBaseState>
-        {
-            {"Menu", this.GetComponent<GameMenuState>()},
-            {"Lobby", this.GetComponent<GameLobbyState>()},
-            {"Simulation", this.GetComponent<GameSimulationState>()},
-            {"Education", this.GetComponent<GameEducationState>()},
-            {"Results", this.GetComponent<GameResultsState>() }
-        };
-
         //Sets the current state to whatever is set in the Inspector as default state
-        if (!gameStatesDictionary.TryGetValue(StartingGameState.ToString(), out currentState))
-        {
-            //If enum does not match a dictionary key, set to default null. This remains on same scene.
-            currentState = null;
-        }
-
-        //Runs EnterState() of the newly set state script
-        if (currentState)
-            currentState.EnterState();
+        ChangeState(StartingGameState);
     }
 
     void Update()
@@ -116,36 +85,47 @@ public class GameManager : MonoBehaviour
             return;
 
         //Runs the UpdateState() function in the currently set state script
-        if (currentState)
-            currentState.UpdateState();
+        currentStateScript.UpdateState();
     }
 
     //Call this function to reset all sim data
     public void resetSimData()
     {
         Debug.Log("Resetting sim data with default values...");
-        simData = SimulationDataScriptableObject.CreateInstance<SimulationDataScriptableObject>();
+        simData = ScriptableObject.CreateInstance<SimulationDataScriptableObject>();
     }
 
     //Passes in a key to the dictionary of different game states
     //This also sucks as an implementation, but it suffices and isn't too hard to add onto later
-    public void ChangeState(string newState)
+    public void ChangeState(GameState newState)
     {
-        if (gameStatesDictionary.TryGetValue(newState, out currentState))
+        switch(newState)
         {
-            currentState.EnterState();
+            case GameState.Menu:
+                currentStateScript = MenuState;
+                break;
+            case GameState.Lobby:
+                currentStateScript = LobbyState;
+                break;
+            case GameState.Simulation:
+                currentStateScript = SimulationState;
+                break;
+            case GameState.Results:
+                currentStateScript = ResultsState;
+                break;
+            default:
+                throw new System.Exception("State not found");
         }
-        else
-        {
-            throw new System.Exception("State not found");
-        }
+
+        currentStateScript.EnterState();
     }
 
+    #region VR Detection (non-functional)
     void DetectInputMode()
     {
         if (IsVRAttatched())
         {
-            
+            InputMode = InputType.VR;
         }
         else
         {
@@ -172,12 +152,13 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+    #endregion
 }
 
 //Holds enum values for all possible scenes - used for inspector drop down menu
-enum GameStates
+public enum GameState
 {
-    Menu, Lobby, Education, Simulation, Results, Current
+    Menu, Lobby, Simulation, Results
 }
 
 //Enum to determine input type

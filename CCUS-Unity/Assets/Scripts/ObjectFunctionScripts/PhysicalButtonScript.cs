@@ -6,14 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PhysicalButtonScript : MonoBehaviour
 {
-    GameManager gm;
+    GameManager gm = GameManager.GM;
 
     private void Start ()
     {
-        gm = GameManager.GM;
-        if (gm==null) {
-            Debug.LogWarning("Game Manager was not found in LobbyScene");
-        } 
+
     }
 
 
@@ -22,7 +19,7 @@ public class PhysicalButtonScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gm.resetSimData();
-            gm.ChangeState("Simulation");
+            gm.ChangeState(GameState.Simulation);
         }
     }
 }

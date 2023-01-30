@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 74396117244641686}
-  - component: {fileID: 2875436010269511045}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -37,18 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2875436010269511045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211422281524137357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca4002651e55224392e6d5e5c76d411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1394348936182771148
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -983,6 +971,7 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &5970031678947304403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 74396117244641686}
     m_Modifications:
+    - target: {fileID: -8545582613120137238, guid: c7f3bd31be4c1d3488ed9520da0bc4d6, type: 3}
+      propertyPath: OverrideInputMethod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1903981960081492398, guid: c7f3bd31be4c1d3488ed9520da0bc4d6, type: 3}
       propertyPath: m_RootOrder
       value: 0

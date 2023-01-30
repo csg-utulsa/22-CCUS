@@ -12,14 +12,11 @@ public class EndAppButton : MonoBehaviour
 
     public void Update()
     {
-        if (gm == null)
-        {
-            gm = GameManager.GM;
-        }
+
     }
     public void ReturnToMenu()
     {
         gm.resetSimData();
-        gm.ChangeState("Lobby");
+        gm.ChangeState(GameState.Lobby);
     }
 }
